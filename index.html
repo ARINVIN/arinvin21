@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Valentine's Day, Saknaah ❤️</title>
     <style>
+        /* General Body Styles */
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -13,31 +14,42 @@
             overflow-x: hidden;
         }
 
-        h2, h3 { text-align: center; }
+        h2, h3 {
+            text-align: center;
+        }
 
+        /* Floating Hearts */
         .hearts-container {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
+            overflow: hidden;
             z-index: 9999;
         }
 
         .heart {
             position: absolute;
-            width: 20px; height: 20px;
+            width: 20px;
+            height: 20px;
             background: #ff4d6d;
             transform: rotate(45deg);
             animation: floatUp linear infinite;
+            opacity: 0.8;
         }
 
-        .heart:before, .heart:after {
+        .heart:before,
+        .heart:after {
             content: "";
             position: absolute;
-            width: 20px; height: 20px;
+            width: 20px;
+            height: 20px;
             background: #ff4d6d;
             border-radius: 50%;
         }
+
         .heart:before { top: -10px; left: 0; }
         .heart:after { left: 10px; top: 0; }
 
@@ -46,114 +58,175 @@
             100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
         }
 
-        .video-section, .slideshow-section {
+        /* Video Section */
+        .video-section {
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, #ffb6b9, #fae3d9);
         }
 
-        .love-video, .slide {
+        .video-section h2 { font-size: 2.5em; margin-bottom: 10px; }
+        .video-section p { font-size: 1.2em; margin-bottom: 30px; }
+
+        .love-video {
             width: 90%;
-            max-width: 800px;
+            max-width: 900px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Slideshow Section */
+        .slideshow-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, #ffd1dc, #ffb6b9);
+        }
+
+        .slideshow-section h2 { font-size: 2.5em; margin-bottom: 30px; }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
 
-        .slide { display: none; margin: auto; }
-
-        .heartfelt-message {
-            text-align: center;
-            padding: 60px 20px;
-            background-color: rgba(0,0,0,0.8);
+        .fade {
+            animation-name: fade;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
         }
 
-        /* The Music Button */
-        #music-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 10000;
-            background: #ff4d6d;
-            color: white;
-            border: none;
-            padding: 15px 25px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        @keyframes fade {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            33% { opacity: 1; }
+            43% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* Heartfelt Message Section */
+        .heartfelt-message {
+            text-align: center;
+            padding: 80px 20px;
+            background-color: #111;
+        }
+
+        .heartfelt-message p {
+            max-width: 850px;
+            margin: auto;
+            font-size: 1.25em;
+            line-height: 1.8;
+        }
+
+        .heartfelt-message h3 {
+            margin-top: 50px;
+            font-size: 2em;
+            color: #ff4d6d;
         }
     </style>
 </head>
 <body>
 
+    <!-- Floating Hearts Animation -->
     <div class="hearts-container"></div>
-    
-    <button id="music-btn" onclick="handleMusic()">Play Our Music 🎵</button>
-    <audio id="loveMusic">
-        <source src="song1.mp3" type="audio/mpeg">
-    </audio>
 
+    <!-- Video Love Section -->
     <section class="video-section">
         <h2>Our Story in Motion 🎥</h2>
+        <p>Every moment with you feels like a movie I never want to end. From our quiet talks to our laughter that fills the air, every second with you is a treasure I hold close to my heart.</p>
+        
         <video controls autoplay muted loop playsinline class="love-video">
             <source src="WhatsApp Video 2026-02-14 at 00.55.34.mp4" type="video/mp4">
+            Your browser does not support the video tag.
         </video>
     </section>
 
+    <!-- Image Slideshow Section -->
     <section class="slideshow-section">
         <h2>Moments With You 🌹</h2>
         <div class="slideshow-container">
-            <img src="WhatsApp Image 2026-02-14 at 01.02.11.jpeg" class="slide">
-            <img src="WhatsApp Image 2026-02-14 at 01.02.12 (1).jpeg" class="slide">
-            <img src="WhatsApp Image 2026-02-14 at 01.02.12.jpeg" class="slide">
+            <img src="WhatsApp Image 2026-02-14 at 01.02.11.jpeg" class="slide" alt="Our Moment 1">
+            <img src="WhatsApp Image 2026-02-14 at 01.02.12 (1).jpeg" class="slide" alt="Our Moment 2">
+            <img src="WhatsApp Image 2026-02-14 at 01.02.12.jpeg" class="slide" alt="Our Moment 3">
         </div>
     </section>
 
+    <!-- Heartfelt Message Section -->
     <section class="heartfelt-message">
-        <p>Saknaah, you are my home, my happiness, and my favorite adventure. Happy Valentine's Day! ❤️</p>
+        <p>
+            Saknaah, you are my favorite “oops, I fell for you again” moment every single day.  
+            You make my heart race faster than my Wi-Fi on a video call, and my smile is bigger than my phone battery after a full charge—just because of you.  
+            Every laugh, every little silly moment, every quiet hug with you feels like a movie scene I never want to end.  
+            I want to be your partner-in-crime, your personal comedian, your midnight snack companion, and the reason you roll your eyes while secretly smiling.  
+            You’re not just my love—you’re my home, my happiness, and the adventure I never knew I needed.  
+            Today and every day, I promise to love you deeper, make you laugh harder, and cherish you endlessly, even when I steal the blanket.  
+            My heart is yours, completely and forever, and I wouldn’t trade you for all the chocolate in the world.
+        </p>
+        <h3>Happy Valentine’s Day, My Love ❤️ — Let’s Keep Falling for Each Other (Even When I Steal the Blanket!)</h3>
     </section>
 
+    <!-- Background Music (Two Songs in Sequence) -->
+    <audio id="loveMusic" autoplay>
+        <source src="song1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Scripts -->
     <script>
-        // 1. Audio Sequence Logic
-        const audio = document.getElementById('loveMusic');
-        const btn = document.getElementById('music-btn');
-        const songs = ['song1.mp3', 'song2.mp3'];
-        let currentIdx = 0;
-
-        function handleMusic() {
-            audio.play();
-            btn.style.display = 'none';
-        }
-
-        audio.addEventListener('ended', function() {
-            currentIdx++;
-            if (currentIdx >= songs.length) currentIdx = 0;
-            audio.src = songs[currentIdx];
-            audio.play();
-        });
-
-        // 2. Hearts Logic
+        // Floating Hearts
+        const heartsContainer = document.querySelector('.hearts-container');
         function createHeart() {
-            const container = document.querySelector('.hearts-container');
             const heart = document.createElement('div');
             heart.classList.add('heart');
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-            container.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
+            const size = Math.random() * 20 + 10;
+            heart.style.width = `${size}px`;
+            heart.style.height = `${size}px`;
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 10000);
         }
         setInterval(createHeart, 300);
 
-        // 3. Slideshow Logic
-        let sIdx = 0;
-        function runSlides() {
-            let slides = document.getElementsByClassName("slide");
-            for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
-            sIdx++;
-            if (sIdx > slides.length) sIdx = 1;
-            slides[sIdx-1].style.display = "block";
-            setTimeout(runSlides, 3000);
+        // Slideshow
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        function showSlides() {
+            slides.forEach(slide => {
+                slide.style.display = 'none';
+                slide.classList.remove('fade');
+            });
+            slideIndex++;
+            if (slideIndex > slides.length) slideIndex = 1;
+            slides[slideIndex - 1].style.display = 'block';
+            slides[slideIndex - 1].classList.add('fade');
+            setTimeout(showSlides, 4000);
         }
-        runSlides();
+        showSlides();
+
+        // Two Songs Sequence
+        const audio = document.getElementById('loveMusic');
+        const songs = [
+            'song1.mp3', 
+            'song2.mp3'
+        ];
+        let current = 0;
+
+        audio.addEventListener('ended', () => {
+            current++;
+            if (current >= songs.length) current = 0; // loop back to first song
+            audio.src = songs[current];
+            audio.play();
+        });
     </script>
+
 </body>
 </html>
