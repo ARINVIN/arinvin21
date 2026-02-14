@@ -4,16 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Valentine's Day, Saknaah ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 <style>
+    /* General */
     body {
         margin: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
         color: #fff;
         overflow-x: hidden;
     }
+    h2, h3 { 
+        font-family: 'Dancing Script', cursive;
+        text-align: center; 
+        margin: 0.5em 0;
+    }
 
-    h2, h3 { text-align: center; }
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
 
     /* Floating Hearts */
     .hearts-container {
@@ -23,8 +36,8 @@
         width: 100%;
         height: 100%;
         pointer-events: none;
-        overflow: hidden;
         z-index: 9999;
+        overflow: hidden;
     }
 
     .heart {
@@ -33,8 +46,8 @@
         height: 20px;
         background: #ff4d6d;
         transform: rotate(45deg);
-        animation: floatUp linear infinite;
         opacity: 0.8;
+        animation: floatUp linear infinite;
     }
 
     .heart:before,
@@ -43,17 +56,20 @@
         position: absolute;
         width: 20px;
         height: 20px;
-        background: #ff4d6d;
+        background: inherit;
         border-radius: 50%;
     }
-
     .heart:before { top: -10px; left: 0; }
     .heart:after { left: 10px; top: 0; }
 
     @keyframes floatUp {
         0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
-        100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+        100% { transform: translateY(-120vh) rotate(405deg); opacity: 0; }
     }
+
+    /* Sections fade-in */
+    section { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+    section.visible { opacity: 1; transform: translateY(0); }
 
     /* Video Section */
     .video-section {
@@ -61,45 +77,27 @@
         padding: 60px 20px;
         background: linear-gradient(to bottom, #ffb6b9, #fae3d9);
     }
-
-    .video-section h2 { font-size: 2.5em; margin-bottom: 10px; }
+    .video-section h2 { font-size: 3em; }
     .video-section p { font-size: 1.2em; margin-bottom: 30px; }
+    .love-video { width: 90%; max-width: 900px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
 
-    .love-video {
-        width: 90%;
-        max-width: 900px;
-        border-radius: 20px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    }
-
-    /* Slideshow Section */
+    /* Slideshow */
     .slideshow-section {
         text-align: center;
         padding: 60px 20px;
         background: linear-gradient(to bottom, #ffd1dc, #ffb6b9);
     }
-
-    .slideshow-section h2 { font-size: 2.5em; margin-bottom: 30px; }
-
-    .slideshow-container {
-        position: relative;
-        max-width: 900px;
-        margin: auto;
-    }
-
+    .slideshow-section h2 { font-size: 2.8em; margin-bottom: 30px; }
+    .slideshow-container { position: relative; max-width: 900px; margin: auto; }
     .slide {
         display: none;
         width: 100%;
         border-radius: 20px;
         box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        transition: transform 0.5s ease;
     }
-
-    .fade {
-        animation-name: fade;
-        animation-duration: 3s;
-        animation-iteration-count: infinite;
-    }
-
+    .slide:hover { transform: scale(1.05); }
+    .fade { animation-name: fade; animation-duration: 3s; animation-iteration-count: infinite; }
     @keyframes fade {
         0% { opacity: 0; }
         10% { opacity: 1; }
@@ -108,41 +106,19 @@
         100% { opacity: 0; }
     }
 
-    /* Heartfelt Message Section */
+    /* Heartfelt Message */
     .heartfelt-message {
         text-align: center;
         padding: 80px 20px;
         background-color: #111;
     }
-
     .heartfelt-message p {
         max-width: 850px;
         margin: auto;
         font-size: 1.25em;
         line-height: 1.8;
     }
-
-    .heartfelt-message h3 {
-        margin-top: 50px;
-        font-size: 2em;
-        color: #ff4d6d;
-    }
-
-    /* Play Music Button */
-    #playMusicBtn {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        padding: 12px 20px;
-        font-size: 1em;
-        background-color: #ff4d6d;
-        border: none;
-        border-radius: 12px;
-        color: #fff;
-        cursor: pointer;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        z-index: 10000;
-    }
+    .heartfelt-message h3 { margin-top: 50px; font-size: 2em; color: #ff4d6d; }
 </style>
 </head>
 <body>
@@ -152,7 +128,6 @@
 <section class="video-section">
     <h2>Our Story in Motion 🎥</h2>
     <p>Every moment with you feels like a movie I never want to end. From our quiet talks to our laughter that fills the air, every second with you is a treasure I hold close to my heart.</p>
-    
     <video id="loveVideo" muted autoplay loop playsinline controls class="love-video">
         <source src="https://files.catbox.moe/lrectv.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -181,67 +156,48 @@
     <h3>Happy Valentine’s Day, My Love ❤️ — Let’s Keep Falling for Each Other (Even When I Steal the Blanket!)</h3>
 </section>
 
-<!-- Background Music -->
-<audio id="loveMusic" src="https://files.catbox.moe/hit112.mp3"></audio>
-
-<!-- Play Music Button -->
-<button id="playMusicBtn">Play Music ❤️</button>
-
 <script>
     // Floating Hearts
     const heartsContainer = document.querySelector('.hearts-container');
     function createHeart() {
         const heart = document.createElement('div');
         heart.classList.add('heart');
-        const size = Math.random() * 20 + 10;
+        const size = Math.random() * 25 + 10;
         heart.style.width = `${size}px`;
         heart.style.height = `${size}px`;
         heart.style.left = `${Math.random() * 100}%`;
-        heart.style.animationDuration = `${Math.random() * 5 + 5}s`;
-        heart.style.opacity = Math.random() * 0.5 + 0.5;
+        heart.style.background = ['#ff4d6d','#ff8080','#ffc0cb'][Math.floor(Math.random()*3)];
+        heart.style.animationDuration = `${Math.random()*5+5}s`;
+        heart.style.opacity = Math.random()*0.5+0.5;
         heartsContainer.appendChild(heart);
-        setTimeout(() => heart.remove(), 10000);
+        setTimeout(()=>heart.remove(),10000);
     }
-    setInterval(createHeart, 300);
+    setInterval(createHeart,300);
 
     // Slideshow
     let slideIndex = 0;
     const slides = document.querySelectorAll('.slide');
     function showSlides() {
-        slides.forEach(slide => {
-            slide.style.display = 'none';
-            slide.classList.remove('fade');
-        });
+        slides.forEach(slide=>{slide.style.display='none';slide.classList.remove('fade');});
         slideIndex++;
-        if (slideIndex > slides.length) slideIndex = 1;
-        slides[slideIndex - 1].style.display = 'block';
-        slides[slideIndex - 1].classList.add('fade');
-        setTimeout(showSlides, 4000);
+        if(slideIndex>slides.length) slideIndex=1;
+        slides[slideIndex-1].style.display='block';
+        slides[slideIndex-1].classList.add('fade');
+        setTimeout(showSlides,4000);
     }
     showSlides();
 
-    // Music playback
-    const loveMusic = document.getElementById('loveMusic');
-    const songs = [
-        'https://files.catbox.moe/hit112.mp3',
-        'https://files.catbox.moe/ob8gdo.mp3'
-    ];
-    let current = 0;
-
-    const playButton = document.getElementById('playMusicBtn');
-    playButton.addEventListener('click', () => {
-        loveMusic.play().then(() => {
-            playButton.style.display = 'none';
-        }).catch(err => console.log('Audio play failed:', err));
-    });
-
-    loveMusic.addEventListener('ended', () => {
-        current++;
-        if(current >= songs.length) current = 0;
-        loveMusic.src = songs[current];
-        loveMusic.load(); // reload new song
-        loveMusic.play().catch(err => console.log('Audio play failed:', err));
-    });
+    // Fade-in sections on scroll
+    const allSections = document.querySelectorAll('section');
+    function checkVisible() {
+        const triggerBottom = window.innerHeight * 0.85;
+        allSections.forEach(section=>{
+            const top = section.getBoundingClientRect().top;
+            if(top < triggerBottom) section.classList.add('visible');
+        });
+    }
+    window.addEventListener('scroll', checkVisible);
+    window.addEventListener('load', checkVisible);
 </script>
 
 </body>
