@@ -128,23 +128,6 @@
         font-size: 2em;
         color: #ff4d6d;
     }
-
-    /* Play Button (for blocked autoplay) */
-    #playButton {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 20px 40px;
-        font-size: 1.5em;
-        background-color: #ff4d6d;
-        border: none;
-        border-radius: 15px;
-        color: #fff;
-        cursor: pointer;
-        z-index: 10000;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
 </style>
 </head>
 <body>
@@ -157,7 +140,7 @@
     <h2>Our Story in Motion 🎥</h2>
     <p>Every moment with you feels like a movie I never want to end. From our quiet talks to our laughter that fills the air, every second with you is a treasure I hold close to my heart.</p>
     
-    <video id="loveVideo" muted autoplay loop playsinline class="love-video">
+    <video id="loveVideo" muted autoplay loop playsinline controls class="love-video">
         <source src="https://files.catbox.moe/lrectv.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -188,12 +171,9 @@
 </section>
 
 <!-- Background Music -->
-<audio id="loveMusic" loop>
+<audio id="loveMusic">
     <source src="song1.mp3" type="audio/mpeg">
 </audio>
-
-<!-- Play Button (for mobile or blocked autoplay) -->
-<button id="playButton">Play Video & Music ❤️</button>
 
 <script>
     // Floating Hearts
@@ -228,30 +208,20 @@
     }
     showSlides();
 
-    // Video & Music Autoplay with Fallback Button
-    const video = document.getElementById('loveVideo');
+    // Music playback after first click anywhere
     const loveMusic = document.getElementById('loveMusic');
-    const songs = ['song1.mp3', 'song2.mp3'];
+    const songs = ['song1.mp3','song2.mp3'];
     let current = 0;
 
-    function startMedia() {
-        video.play().catch(() => {});
+    document.body.addEventListener('click', () => {
         loveMusic.play().catch(() => {});
-        document.getElementById('playButton').style.display = 'none';
-    }
+    }, {once: true});
 
-    document.getElementById('playButton').addEventListener('click', startMedia);
-
-    video.play().catch(() => {
-        document.getElementById('playButton').style.display = 'block';
-    });
-
-    // Two-song sequence
     loveMusic.addEventListener('ended', () => {
         current++;
-        if (current >= songs.length) current = 0;
+        if(current >= songs.length) current = 0;
         loveMusic.src = songs[current];
-        loveMusic.play();
+        loveMusic.play().catch(() => {});
     });
 </script>
 </body>
