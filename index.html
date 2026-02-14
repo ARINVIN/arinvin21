@@ -1,232 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Valentine's Day, Saknaah ❤️</title>
-    <style>
-        /* General Body Styles */
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
-            color: #fff;
-            overflow-x: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Valentine's Day, Saknaah ❤️</title>
+<style>
+    /* General Body Styles */
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+        color: #fff;
+        overflow-x: hidden;
+    }
 
-        h2, h3 {
-            text-align: center;
-        }
+    h2, h3 { text-align: center; }
 
-        /* Floating Hearts */
-        .hearts-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 9999;
-        }
+    /* Floating Hearts */
+    .hearts-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 9999;
+    }
 
-        .heart {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ff4d6d;
-            transform: rotate(45deg);
-            animation: floatUp linear infinite;
-            opacity: 0.8;
-        }
+    .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #ff4d6d;
+        transform: rotate(45deg);
+        animation: floatUp linear infinite;
+        opacity: 0.8;
+    }
 
-        .heart:before,
-        .heart:after {
-            content: "";
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ff4d6d;
-            border-radius: 50%;
-        }
+    .heart:before,
+    .heart:after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #ff4d6d;
+        border-radius: 50%;
+    }
 
-        .heart:before { top: -10px; left: 0; }
-        .heart:after { left: 10px; top: 0; }
+    .heart:before { top: -10px; left: 0; }
+    .heart:after { left: 10px; top: 0; }
 
-        @keyframes floatUp {
-            0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
-            100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
-        }
+    @keyframes floatUp {
+        0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
+        100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+    }
 
-        /* Video Section */
-        .video-section {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(to bottom, #ffb6b9, #fae3d9);
-        }
+    /* Video Section */
+    .video-section {
+        text-align: center;
+        padding: 60px 20px;
+        background: linear-gradient(to bottom, #ffb6b9, #fae3d9);
+    }
 
-        .video-section h2 { font-size: 2.5em; margin-bottom: 10px; }
-        .video-section p { font-size: 1.2em; margin-bottom: 30px; }
+    .video-section h2 { font-size: 2.5em; margin-bottom: 10px; }
+    .video-section p { font-size: 1.2em; margin-bottom: 30px; }
 
-        .love-video {
-            width: 90%;
-            max-width: 900px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
+    .love-video {
+        width: 90%;
+        max-width: 900px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
 
-        /* Slideshow Section */
-        .slideshow-section {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(to bottom, #ffd1dc, #ffb6b9);
-        }
+    /* Slideshow Section */
+    .slideshow-section {
+        text-align: center;
+        padding: 60px 20px;
+        background: linear-gradient(to bottom, #ffd1dc, #ffb6b9);
+    }
 
-        .slideshow-section h2 { font-size: 2.5em; margin-bottom: 30px; }
+    .slideshow-section h2 { font-size: 2.5em; margin-bottom: 30px; }
 
-        .slideshow-container {
-            position: relative;
-            max-width: 900px;
-            margin: auto;
-        }
+    .slideshow-container {
+        position: relative;
+        max-width: 900px;
+        margin: auto;
+    }
 
-        .slide {
-            display: none;
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
+    .slide {
+        display: none;
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    }
 
-        .fade {
-            animation-name: fade;
-            animation-duration: 3s;
-            animation-iteration-count: infinite;
-        }
+    .fade {
+        animation-name: fade;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+    }
 
-        @keyframes fade {
-            0% { opacity: 0; }
-            10% { opacity: 1; }
-            33% { opacity: 1; }
-            43% { opacity: 0; }
-            100% { opacity: 0; }
-        }
+    @keyframes fade {
+        0% { opacity: 0; }
+        10% { opacity: 1; }
+        33% { opacity: 1; }
+        43% { opacity: 0; }
+        100% { opacity: 0; }
+    }
 
-        /* Heartfelt Message Section */
-        .heartfelt-message {
-            text-align: center;
-            padding: 80px 20px;
-            background-color: #111;
-        }
+    /* Heartfelt Message Section */
+    .heartfelt-message {
+        text-align: center;
+        padding: 80px 20px;
+        background-color: #111;
+    }
 
-        .heartfelt-message p {
-            max-width: 850px;
-            margin: auto;
-            font-size: 1.25em;
-            line-height: 1.8;
-        }
+    .heartfelt-message p {
+        max-width: 850px;
+        margin: auto;
+        font-size: 1.25em;
+        line-height: 1.8;
+    }
 
-        .heartfelt-message h3 {
-            margin-top: 50px;
-            font-size: 2em;
-            color: #ff4d6d;
-        }
-    </style>
+    .heartfelt-message h3 {
+        margin-top: 50px;
+        font-size: 2em;
+        color: #ff4d6d;
+    }
+
+    /* Play Button (for blocked autoplay) */
+    #playButton {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px 40px;
+        font-size: 1.5em;
+        background-color: #ff4d6d;
+        border: none;
+        border-radius: 15px;
+        color: #fff;
+        cursor: pointer;
+        z-index: 10000;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+</style>
 </head>
 <body>
 
-    <!-- Floating Hearts Animation -->
-    <div class="hearts-container"></div>
+<!-- Floating Hearts Animation -->
+<div class="hearts-container"></div>
 
-    <!-- Video Love Section -->
-    <section class="video-section">
-        <h2>Our Story in Motion 🎥</h2>
-        <p>Every moment with you feels like a movie I never want to end. From our quiet talks to our laughter that fills the air, every second with you is a treasure I hold close to my heart.</p>
-        
-        <video controls autoplay muted loop playsinline class="love-video">
-            <source src="WhatsApp Video 2026-02-14 at 00.55.34.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </section>
+<!-- Video Love Section -->
+<section class="video-section">
+    <h2>Our Story in Motion 🎥</h2>
+    <p>Every moment with you feels like a movie I never want to end. From our quiet talks to our laughter that fills the air, every second with you is a treasure I hold close to my heart.</p>
+    
+    <video id="loveVideo" muted autoplay loop playsinline class="love-video">
+        <source src="WhatsApp Video 2026-02-14 at 00.55.34.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</section>
 
-    <!-- Image Slideshow Section -->
-    <section class="slideshow-section">
-        <h2>Moments With You 🌹</h2>
-        <div class="slideshow-container">
-            <img src="WhatsApp Image 2026-02-14 at 01.02.11.jpeg" class="slide" alt="Our Moment 1">
-            <img src="WhatsApp Image 2026-02-14 at 01.02.12 (1).jpeg" class="slide" alt="Our Moment 2">
-            <img src="WhatsApp Image 2026-02-14 at 01.02.12.jpeg" class="slide" alt="Our Moment 3">
-        </div>
-    </section>
+<!-- Image Slideshow Section -->
+<section class="slideshow-section">
+    <h2>Moments With You 🌹</h2>
+    <div class="slideshow-container">
+        <img src="WhatsApp Image 2026-02-14 at 01.02.11.jpeg" class="slide" alt="Our Moment 1">
+        <img src="WhatsApp Image 2026-02-14 at 01.02.12 (1).jpeg" class="slide" alt="Our Moment 2">
+        <img src="WhatsApp Image 2026-02-14 at 01.02.12.jpeg" class="slide" alt="Our Moment 3">
+    </div>
+</section>
 
-    <!-- Heartfelt Message Section -->
-    <section class="heartfelt-message">
-        <p>
-            Saknaah, you are my favorite “oops, I fell for you again” moment every single day.  
-            You make my heart race faster than my Wi-Fi on a video call, and my smile is bigger than my phone battery after a full charge—just because of you.  
-            Every laugh, every little silly moment, every quiet hug with you feels like a movie scene I never want to end.  
-            I want to be your partner-in-crime, your personal comedian, your midnight snack companion, and the reason you roll your eyes while secretly smiling.  
-            You’re not just my love—you’re my home, my happiness, and the adventure I never knew I needed.  
-            Today and every day, I promise to love you deeper, make you laugh harder, and cherish you endlessly, even when I steal the blanket.  
-            My heart is yours, completely and forever, and I wouldn’t trade you for all the chocolate in the world.
-        </p>
-        <h3>Happy Valentine’s Day, My Love ❤️ — Let’s Keep Falling for Each Other (Even When I Steal the Blanket!)</h3>
-    </section>
+<!-- Heartfelt Message Section -->
+<section class="heartfelt-message">
+    <p>
+        Saknaah, you are my favorite “oops, I fell for you again” moment every single day.  
+        You make my heart race faster than my Wi-Fi on a video call, and my smile is bigger than my phone battery after a full charge—just because of you.  
+        Every laugh, every little silly moment, every quiet hug with you feels like a movie scene I never want to end.  
+        I want to be your partner-in-crime, your personal comedian, your midnight snack companion, and the reason you roll your eyes while secretly smiling.  
+        You’re not just my love—you’re my home, my happiness, and the adventure I never knew I needed.  
+        Today and every day, I promise to love you deeper, make you laugh harder, and cherish you endlessly, even when I steal the blanket.  
+        My heart is yours, completely and forever, and I wouldn’t trade you for all the chocolate in the world.
+    </p>
+    <h3>Happy Valentine’s Day, My Love ❤️ — Let’s Keep Falling for Each Other (Even When I Steal the Blanket!)</h3>
+</section>
 
-    <!-- Background Music (Two Songs in Sequence) -->
-    <audio id="loveMusic" autoplay>
-        <source src="song1.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+<!-- Background Music -->
+<audio id="loveMusic" loop>
+    <source src="song1.mp3" type="audio/mpeg">
+</audio>
 
-    <!-- Scripts -->
-    <script>
-        // Floating Hearts
-        const heartsContainer = document.querySelector('.hearts-container');
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            const size = Math.random() * 20 + 10;
-            heart.style.width = `${size}px`;
-            heart.style.height = `${size}px`;
-            heart.style.left = `${Math.random() * 100}%`;
-            heart.style.animationDuration = `${Math.random() * 5 + 5}s`;
-            heart.style.opacity = Math.random() * 0.5 + 0.5;
-            heartsContainer.appendChild(heart);
-            setTimeout(() => heart.remove(), 10000);
-        }
-        setInterval(createHeart, 300);
+<!-- Play Button (for mobile or blocked autoplay) -->
+<button id="playButton">Play Video & Music ❤️</button>
 
-        // Slideshow
-        let slideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        function showSlides() {
-            slides.forEach(slide => {
-                slide.style.display = 'none';
-                slide.classList.remove('fade');
-            });
-            slideIndex++;
-            if (slideIndex > slides.length) slideIndex = 1;
-            slides[slideIndex - 1].style.display = 'block';
-            slides[slideIndex - 1].classList.add('fade');
-            setTimeout(showSlides, 4000);
-        }
-        showSlides();
+<script>
+    // Floating Hearts
+    const heartsContainer = document.querySelector('.hearts-container');
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        const size = Math.random() * 20 + 10;
+        heart.style.width = `${size}px`;
+        heart.style.height = `${size}px`;
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.animationDuration = `${Math.random() * 5 + 5}s`;
+        heart.style.opacity = Math.random() * 0.5 + 0.5;
+        heartsContainer.appendChild(heart);
+        setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 300);
 
-        // Two Songs Sequence
-        const audio = document.getElementById('loveMusic');
-        const songs = [
-            'song1.mp3', 
-            'song2.mp3'
-        ];
-        let current = 0;
-
-        audio.addEventListener('ended', () => {
-            current++;
-            if (current >= songs.length) current = 0; // loop back to first song
-            audio.src = songs[current];
-            audio.play();
+    // Slideshow
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    function showSlides() {
+        slides.forEach(slide => {
+            slide.style.display = 'none';
+            slide.classList.remove('fade');
         });
-    </script>
+        slideIndex++;
+        if (slideIndex > slides.length) slideIndex = 1;
+        slides[slideIndex - 1].style.display = 'block';
+        slides[slideIndex - 1].classList.add('fade');
+        setTimeout(showSlides, 4000);
+    }
+    showSlides();
 
+    // Video & Music Autoplay with Fallback Button
+    const video = document.getElementById('loveVideo');
+    const loveMusic = document.getElementById('loveMusic');
+    const songs = ['song1.mp3', 'song2.mp3'];
+    let current = 0;
+
+    function startMedia() {
+        video.play().catch(() => {});
+        loveMusic.play().catch(() => {});
+        document.getElementById('playButton').style.display = 'none';
+    }
+
+    document.getElementById('playButton').addEventListener('click', startMedia);
+
+    video.play().catch(() => {
+        document.getElementById('playButton').style.display = 'block';
+    });
+
+    // Two-song sequence
+    loveMusic.addEventListener('ended', () => {
+        current++;
+        if (current >= songs.length) current = 0;
+        loveMusic.src = songs[current];
+        loveMusic.play();
+    });
+</script>
 </body>
 </html>
