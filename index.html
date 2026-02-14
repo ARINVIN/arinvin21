@@ -6,88 +6,74 @@
 <title>Happy Valentine's Day, Saknaah ❤️</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ---------------- Body ---------------- */
+/* -------- Body & General -------- */
 body {
   margin:0;
-  font-family: 'Roboto', sans-serif;
+  font-family:'Roboto',sans-serif;
   background:#111;
-  overflow-x:hidden;
   color:#fff;
+  overflow-x:hidden;
   opacity:0;
   transition:opacity 2s ease;
 }
-body.loaded { opacity:1; }
+body.loaded{opacity:1;}
+section{opacity:0; transform:translateY(30px); transition:all 1s ease; position:relative; z-index:1;}
+section.visible{opacity:1; transform:translateY(0);}
 
-/* ---------------- Starfield & Nebula ---------------- */
-#starfield {
+/* -------- Starfield -------- */
+#starfield{
   position:fixed; top:0; left:0; width:100%; height:100%;
   z-index:0; overflow:hidden;
-  background:#111 url('https://i.imgur.com/5Q7Vj0u.png') center/cover no-repeat; /* subtle nebula texture */
+  background:#111 url('https://i.imgur.com/5Q7Vj0u.png') center/cover no-repeat;
 }
-.star {
+.star{
   position:absolute; width:2px; height:2px; background:#fff; border-radius:50%;
   opacity:0.8; animation:twinkle linear infinite;
 }
-@keyframes twinkle { 0%,100% {opacity:0.5;} 50% {opacity:1;} }
+@keyframes twinkle{0%,100%{opacity:0.5;}50%{opacity:1;}}
 
-/* ---------------- Floating Hearts ---------------- */
-.hearts-container {
+/* -------- Floating Hearts -------- */
+.hearts-container{
   position:fixed; top:0; left:0; width:100%; height:100%;
   pointer-events:none; z-index:2; overflow:hidden;
 }
-.heart {
-  position:absolute; transform:rotate(45deg);
+.heart{
+  position:absolute; width:20px; height:20px; background:#ff4d6d; transform:rotate(45deg);
   border-radius:3px; opacity:0.9;
-  animation: floatUp linear infinite;
 }
-.heart:before,.heart:after {
+.heart:before,.heart:after{
   content:""; position:absolute; width:20px; height:20px; background:inherit; border-radius:50%;
 }
-.heart:before { top:-10px; left:0; }
-.heart:after { left:10px; top:0; }
-@keyframes floatUp { 0%{transform:translateY(0) rotate(45deg); opacity:0.8;}100%{transform:translateY(-150vh) rotate(405deg);opacity:0;} }
-.heartbeat { animation:heartbeat 1.2s infinite; }
-@keyframes heartbeat { 0%,100%{transform:scale(1);}50%{transform:scale(1.15);} }
+.heart:before{top:-10px; left:0;}
+.heart:after{left:10px; top:0;}
 
-/* ---------------- Sections ---------------- */
-section { opacity:0; transform:translateY(30px); transition:all 1s ease; position:relative; z-index:1; }
-section.visible { opacity:1; transform:translateY(0); }
-
-/* ---------------- Video ---------------- */
-.video-section { text-align:center; padding:60px 20px; }
-.video-section h2 { font-family:'Dancing Script', cursive; font-size:3em; }
-.video-section p { font-size:1.2em; margin-bottom:30px; }
-.love-video { width:90%; max-width:900px; border-radius:20px; box-shadow:0 20px 40px rgba(255,77,109,0.4); position:relative; z-index:1; }
-.video-glow { position:absolute; top:-10px; left:-10px; right:-10px; bottom:-10px;
+/* -------- Video -------- */
+.video-section{text-align:center; padding:60px 20px; z-index:1;}
+.video-section h2{font-family:'Dancing Script',cursive;font-size:3em;}
+.video-section p{font-size:1.2em;margin-bottom:30px;}
+.love-video{width:90%; max-width:900px; border-radius:20px; box-shadow:0 20px 40px rgba(255,77,109,0.4); position:relative; z-index:1;}
+.video-glow{
+  position:absolute; top:-10px; left:-10px; right:-10px; bottom:-10px;
   border-radius:25px; box-shadow:0 0 60px 15px rgba(255,77,109,0.5);
   animation: glowPulse 3s infinite alternate; pointer-events:none; z-index:0;
 }
-@keyframes glowPulse { 0% {box-shadow:0 0 40px 10px rgba(255,77,109,0.3);} 100% {box-shadow:0 0 80px 20px rgba(255,77,109,0.6);} }
+@keyframes glowPulse{0%{box-shadow:0 0 40px 10px rgba(255,77,109,0.3);}100%{box-shadow:0 0 80px 20px rgba(255,77,109,0.6);}}
 
-/* ---------------- Slideshow ---------------- */
-.slideshow-section { text-align:center; padding:60px 20px; }
-.slideshow-section h2 { font-family:'Dancing Script', cursive; font-size:2.8em; margin-bottom:30px; }
-.slideshow-container { position:relative; max-width:900px; margin:auto; height:500px; overflow:hidden; border-radius:20px; box-shadow:0 15px 35px rgba(255,77,109,0.3); }
-.slide { position:absolute; width:100%; height:100%; top:0; left:0; opacity:0; transform:scale(1); transition:opacity 3s ease, transform 6s ease; }
-.slide img { width:100%; height:100%; object-fit:cover; border-radius:20px; filter:brightness(1.1);}
-.slide.active { opacity:1; transform:scale(1.2); }
+/* -------- Slideshow -------- */
+.slideshow-section{text-align:center; padding:60px 20px; z-index:1;}
+.slideshow-section h2{font-family:'Dancing Script',cursive;font-size:2.8em; margin-bottom:30px;}
+.slideshow-container{position:relative; max-width:900px; margin:auto; height:500px; overflow:hidden; border-radius:20px; box-shadow:0 15px 35px rgba(255,77,109,0.3);}
+.slide{position:absolute; width:100%; height:100%; top:0; left:0; opacity:0; transform:scale(1); transition:opacity 3s ease, transform 6s ease;}
+.slide img{width:100%; height:100%; object-fit:cover; border-radius:20px; filter:brightness(1.1);}
+.slide.active{opacity:1; transform:scale(1.1);}
 
-/* ---------------- Heartfelt Message ---------------- */
-.heartfelt-message { text-align:center; padding:80px 20px; background-color:#111; border-radius:15px; box-shadow:0 0 50px rgba(255,77,109,0.4); font-size:1.25em; line-height:1.8; }
-.heartfelt-message h3 { margin-top:50px; font-size:2em; color:#ff4d6d; font-family:'Dancing Script', cursive; }
+/* -------- Heartfelt Message -------- */
+.heartfelt-message{text-align:center; padding:80px 20px; background-color:#111; border-radius:15px; box-shadow:0 0 50px rgba(255,77,109,0.4); font-size:1.25em; line-height:1.8;}
+.heartfelt-message h3{margin-top:50px; font-size:2em; color:#ff4d6d; font-family:'Dancing Script',cursive;}
 
-/* ---------------- Shooting Stars ---------------- */
-.shooting-star { position:absolute; width:3px; height:3px; background:#fff; border-radius:50%; box-shadow:0 0 8px #fff; pointer-events:none; z-index:1; }
-.shooting-star-letter { position:absolute; color:#ffb6b9; font-family:'Dancing Script', cursive; font-size:1.5em; opacity:0; transition:opacity 0.5s; pointer-events:none; }
-
-/* ---------------- Floating Love Words ---------------- */
-.love-word { position:fixed; color:#ffb6b9; font-size:1.5em; pointer-events:none; opacity:0.9; animation:wordFloat 12s linear infinite; }
-@keyframes wordFloat {0%{transform:translateY(100vh) translateX(0) rotate(0deg); opacity:0;}10%{opacity:0.9;}100%{transform:translateY(-50vh) translateX(50px) rotate(360deg); opacity:0;}}
-
-/* ---------------- Scroll Indicator ---------------- */
-.scroll-indicator { position:fixed; bottom:20px; right:20px; font-size:2.5em; color:#ff4d6d; animation:bounce 2s infinite; cursor:pointer; }
-@keyframes bounce {0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}}
-
+/* -------- Scroll Indicator -------- */
+.scroll-indicator{position:fixed; bottom:20px; right:20px; font-size:2.5em; color:#ff4d6d; animation:bounce 2s infinite; cursor:pointer;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}}
 </style>
 </head>
 <body>
@@ -100,7 +86,7 @@ section.visible { opacity:1; transform:translateY(0); }
 
 <!-- Video Section -->
 <section class="video-section">
-  <h2 class="heartbeat">Our Story in Motion 🎥</h2>
+  <h2>Our Story in Motion 🎥</h2>
   <p>Every moment with you feels like a movie I never want to end. From quiet talks to our laughter, every second with you is a treasure.</p>
   <div style="position:relative; display:inline-block;">
     <video id="loveVideo" muted autoplay loop playsinline controls class="love-video">
@@ -148,28 +134,40 @@ for(let i=0;i<200;i++){
   starfield.appendChild(star);
 }
 
-// ---------------- Floating Hearts ----------------
+// ---------------- Floating Hearts (Elegant Sway) ----------------
 const heartsContainer = document.querySelector('.hearts-container');
 function createHeart(){
-  const heart=document.createElement('div'); heart.classList.add('heart');
-  const size=Math.random()*30+20; heart.style.width=heart.style.height=`${size}px`;
-  heart.style.left=`${Math.random()*100}%`;
-  heart.style.background=['#ff4d6d','#ff8080','#ffc0cb'][Math.floor(Math.random()*3)];
-  heart.style.animationDuration=`${Math.random()*5+4}s`;
-  heartsContainer.appendChild(heart);
-  setTimeout(()=>heart.remove(),12000);
+    const heart = document.createElement('div'); heart.classList.add('heart');
+    const size = Math.random()*20+20;
+    heart.style.width = heart.style.height = `${size}px`;
+    heart.style.left = `${Math.random()*100}%`;
+    heart.style.bottom = '-30px';
+    heart.style.background = ['#ff4d6d','#ff8080','#ffc0cb'][Math.floor(Math.random()*3)];
+
+    const floatDuration = Math.random()*10+8;
+    const swayAmplitude = Math.random()*30+20;
+    const rotationSpeed = (Math.random()*2-1)*180;
+
+    let start = null;
+    function animateHeart(timestamp){
+        if(!start) start = timestamp;
+        const progress = (timestamp-start)/1000;
+        const percent = progress/floatDuration;
+        if(percent<1){
+            const sway = Math.sin(percent*Math.PI*2)*swayAmplitude;
+            const bottom = -30 + (window.innerHeight+60)*percent;
+            heart.style.transform = `translate(${sway}px, -${bottom}px) rotate(${rotationSpeed*percent}deg) scale(${1+0.1*Math.sin(progress*5)})`;
+            requestAnimationFrame(animateHeart);
+        } else heart.remove();
+    }
+    heartsContainer.appendChild(heart);
+    requestAnimationFrame(animateHeart);
 }
-setInterval(createHeart,200);
+setInterval(createHeart, 400);
 
 // ---------------- Slideshow ----------------
-const slides=document.querySelectorAll('.slide');
-let slideIndex=0;
-function showSlides(){
-  slides.forEach(slide=>slide.classList.remove('active'));
-  slides[slideIndex].classList.add('active');
-  slideIndex++; if(slideIndex>=slides.length) slideIndex=0;
-  setTimeout(showSlides,6000);
-}
+const slides=document.querySelectorAll('.slide'); let slideIndex=0;
+function showSlides(){ slides.forEach(s=>s.classList.remove('active')); slides[slideIndex].classList.add('active'); slideIndex++; if(slideIndex>=slides.length) slideIndex=0; setTimeout(showSlides,6000);}
 showSlides();
 
 // ---------------- Sections fade-in ----------------
@@ -184,57 +182,9 @@ function checkVisible(){
 window.addEventListener('scroll',checkVisible);
 window.addEventListener('load',checkVisible);
 
-// ---------------- Shooting Stars Spelling Name ----------------
-const nameToSpell="Saknaah";
-function shootingStarSpell(){
-  const startX=Math.random()*window.innerWidth*0.6+window.innerWidth*0.2;
-  const startY=Math.random()*window.innerHeight*0.2+window.innerHeight*0.1;
-  const endX=startX+window.innerWidth*0.3;
-  const endY=startY+window.innerHeight*0.2;
-
-  const star=document.createElement('div'); star.className='shooting-star';
-  star.style.left=`${startX}px`; star.style.top=`${startY}px`;
-  document.body.appendChild(star);
-
-  let letters = [];
-  for(let i=0;i<nameToSpell.length;i++){
-    const l=document.createElement('div'); l.className='shooting-star-letter';
-    l.textContent=nameToSpell[i]; l.style.left=startX+'px'; l.style.top=startY+'px';
-    document.body.appendChild(l); letters.push(l);
-  }
-
-  let t=0;
-  const duration=3000; const interval=20;
-  const timer=setInterval(()=>{
-    t+=interval; const progress=t/duration;
-    star.style.left=`${startX + (endX-startX)*progress}px`;
-    star.style.top=`${startY + (endY-startY)*progress}px`;
-    letters.forEach((l,i)=>{
-      const letterProgress = (progress-(i*0.1));
-      if(letterProgress>0 && letterProgress<=1){
-        l.style.left=`${startX + (endX-startX)*letterProgress}px`;
-        l.style.top=`${startY + (endY-startY)*letterProgress}px`;
-        l.style.opacity=1;
-      } else l.style.opacity=0;
-    });
-    if(progress>=1){ clearInterval(timer); star.remove(); letters.forEach(l=>l.remove()); }
-  },interval);
-}
-setInterval(shootingStarSpell,8000);
-
-// ---------------- Floating Love Words ----------------
-const loveWords=["Love","Forever","You + Me","Always","Soulmate","Hugs","Kisses","❤️"];
-function spawnLoveWord(){
-  const word=document.createElement('div'); word.className='love-word';
-  word.textContent=loveWords[Math.floor(Math.random()*loveWords.length)];
-  word.style.left=`${Math.random()*80+10}%`; word.style.top=`100vh`;
-  document.body.appendChild(word); setTimeout(()=>word.remove(),12000);
-}
-setInterval(spawnLoveWord,1000);
-
 // ---------------- Click Heart Pop ----------------
-document.body.addEventListener('click',e=>{
-  const heart=document.createElement('div'); heart.className='heart';
+document.body.addEventListener('click', e=>{
+  const heart = document.createElement('div'); heart.classList.add('heart');
   const size=Math.random()*20+20; heart.style.width=heart.style.height=`${size}px`;
   heart.style.left=`${e.clientX-size/2}px`; heart.style.top=`${e.clientY-size/2}px`;
   heart.style.background=['#ff4d6d','#ff8080','#ffc0cb'][Math.floor(Math.random()*3)];
