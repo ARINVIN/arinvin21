@@ -50,14 +50,39 @@ body{
 .heart:before{top:-12.5px; left:0;}
 .heart:after{top:0; left:12.5px;}
 
+/* Shooting Stars */
+#shootingStars{
+  position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden;
+}
+.shooting-star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background: #fff;
+  border-radius:50%;
+  box-shadow: 0 0 6px #fff;
+  transform:rotate(-45deg);
+  animation:shoot linear forwards;
+}
+@keyframes shoot{
+  0% { transform: translate(0,0) rotate(-45deg); opacity:1; }
+  100% { transform: translate(1200px, 800px) rotate(-45deg); opacity:0; }
+}
+
+/* Main content z-index */
+.video-section, .slideshow-section, .heartfelt-message {
+  position: relative;
+  z-index: 1;
+}
+
 /* Video Section */
-.video-section{text-align:center; padding:60px 20px; position:relative; z-index:1;}
+.video-section{text-align:center; padding:60px 20px;}
 .video-section h2{font-family:'Dancing Script',cursive;font-size:3em;}
 .video-section p{font-size:1.2em;margin-bottom:30px;}
-.love-video{width:90%; max-width:900px; border-radius:20px; box-shadow:0 20px 40px rgba(255,77,109,0.3); z-index:1;}
+.love-video{width:90%; max-width:900px; border-radius:20px; box-shadow:0 20px 40px rgba(255,77,109,0.3);}
 
 /* Slideshow Section */
-.slideshow-section{text-align:center; padding:60px 20px; z-index:1;}
+.slideshow-section{text-align:center; padding:60px 20px;}
 .slideshow-section h2{font-family:'Dancing Script',cursive;font-size:2.8em; margin-bottom:30px;}
 .slideshow-container{position:relative; max-width:900px; margin:auto; height:500px; overflow:hidden; border-radius:20px; box-shadow:0 15px 35px rgba(255,77,109,0.3);}
 .slide{position:absolute; width:100%; height:100%; top:0; left:0; opacity:0; transform:scale(1); transition:opacity 3s ease, transform 6s ease;}
@@ -65,7 +90,7 @@ body{
 .slide.active{opacity:1; transform:scale(1.05);}
 
 /* Heartfelt Message */
-.heartfelt-message{text-align:center; padding:80px 20px; background-color:#111; border-radius:15px; box-shadow:0 0 50px rgba(255,77,109,0.4); font-size:1.25em; line-height:1.8; z-index:1;}
+.heartfelt-message{text-align:center; padding:80px 20px; background-color:#111; border-radius:15px; box-shadow:0 0 50px rgba(255,77,109,0.4); font-size:1.25em; line-height:1.8;}
 .heartfelt-message h3{margin-top:50px; font-size:2em; color:#ff4d6d; font-family:'Dancing Script',cursive;}
 </style>
 </head>
@@ -76,6 +101,9 @@ body{
 
 <!-- Floating Hearts -->
 <div class="hearts-container"></div>
+
+<!-- Shooting Stars -->
+<div id="shootingStars"></div>
 
 <!-- Video Section -->
 <section class="video-section">
@@ -119,13 +147,17 @@ for(let i=0;i<100;i++){
   starfield.appendChild(star);
 }
 
-// ---------------- Floating Hearts behind content ----------------
+// ---------------- Floating Hearts in margins ----------------
 const heartsContainer = document.querySelector('.hearts-container');
 function createHeart(){
     const heart = document.createElement('div'); heart.classList.add('heart');
     const size = Math.random()*20+20;
     heart.style.width = heart.style.height = `${size}px`;
-    heart.style.left = `${Math.random()*100}%`;
+
+    // Mostly in side margins
+    const horizontalMargin = Math.random() < 0.5 ? Math.random()*10 : 90 + Math.random()*10;
+    heart.style.left = `${horizontalMargin}%`;
+
     heart.style.bottom = '-30px';
     heart.style.background = ['#ff4d6d','#ff8080','#ffc0cb'][Math.floor(Math.random()*3)];
 
@@ -155,6 +187,19 @@ setInterval(createHeart, 400);
 const slides=document.querySelectorAll('.slide'); let slideIndex=0;
 function showSlides(){ slides.forEach(s=>s.classList.remove('active')); slides[slideIndex].classList.add('active'); slideIndex++; if(slideIndex>=slides.length) slideIndex=0; setTimeout(showSlides,6000);}
 showSlides();
+
+// ---------------- Shooting Stars ----------------
+const shootingStarsContainer = document.getElementById('shootingStars');
+function createShootingStar(){
+  const star = document.createElement('div');
+  star.classList.add('shooting-star');
+  star.style.left = Math.random()*80 + 'vw';
+  star.style.top = Math.random()*60 + 'vh';
+  star.style.animationDuration = (Math.random()*1 + 0.8) + 's';
+  shootingStarsContainer.appendChild(star);
+  setTimeout(()=>star.remove(),1500);
+}
+setInterval(createShootingStar, 2000);
 </script>
 </body>
 </html>
