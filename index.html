@@ -128,12 +128,15 @@
     <button id="music-button" onclick="startMusic()">Play Music 🎵</button>
     <audio id="loveMusic">
         <source src="song1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
     </audio>
 
     <section class="video-section">
         <h2>Our Story in Motion 🎥</h2>
-        <video id="myVideo" controls autoplay muted loop playsinline class="love-video">
+        <p>Every moment with you feels like a movie I never want to end.</p>
+        <video controls autoplay muted loop playsinline class="love-video">
             <source src="WhatsApp Video 2026-02-14 at 00.55.34.mp4" type="video/mp4">
+            Your browser does not support the video tag.
         </video>
     </section>
 
@@ -148,8 +151,12 @@
 
     <section class="heartfelt-message">
         <p>
-            Saknaah, you are my favorite “oops, I fell for you again” moment every single day...
-            Today and every day, I promise to love you deeper, make you laugh harder, and cherish you endlessly.
+            Saknaah, you are my favorite “oops, I fell for you again” moment every single day.  
+            You make my heart race faster than my Wi-Fi on a video call, and my smile is bigger than my phone battery after a full charge—just because of you.  
+            Every laugh, every little silly moment, every quiet hug with you feels like a movie scene I never want to end.  
+            You’re not just my love—you’re my home, my happiness, and the adventure I never knew I needed.  
+            Today and every day, I promise to love you deeper, make you laugh harder, and cherish you endlessly, even when I steal the blanket.  
+            My heart is yours, completely and forever, and I wouldn’t trade you for all the chocolate in the world.
         </p>
         <h3 style="color: #ff4d6d;">Happy Valentine’s Day, My Love ❤️</h3>
     </section>
@@ -158,11 +165,11 @@
         // --- 1. Audio Logic ---
         const audio = document.getElementById('loveMusic');
         const btn = document.getElementById('music-button');
-        const songs = ['song1.mp3', 'song2.mp3'];
+        const songs = ['song1.mp3', 'song2.mp3']; // Ensure these names match your files in GitHub
         let currentSongIndex = 0;
 
         function startMusic() {
-            audio.play();
+            audio.play().catch(e => console.log("Playback error:", e));
             btn.style.display = 'none'; // Hide button once playing
         }
 
@@ -190,9 +197,8 @@
         // --- 3. Slideshow ---
         let slideIndex = 0;
         function showSlides() {
-            let i;
             let slides = document.getElementsByClassName("slide");
-            for (i = 0; i < slides.length; i++) {
+            for (let i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";  
             }
             slideIndex++;
