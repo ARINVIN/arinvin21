@@ -95,9 +95,9 @@ section.visible { opacity:1; transform: translateY(0) rotate(0deg); }
 .scroll-indicator { position:fixed; bottom:20px; right:20px; font-size:2.5em; color:#ff4d6d; animation:bounce 2s infinite; cursor:pointer; }
 @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-/* ---------------- Confetti ---------------- */
-.confetti-piece { position:absolute; width:10px; height:10px; background:#ff4d6d; opacity:0.9; pointer-events:none; animation:confettiAnim 3s forwards; }
-@keyframes confettiAnim { 0% { transform:translateY(0) rotate(0deg); opacity:1;} 100% { transform:translateY(250px) rotate(360deg); opacity:0;} }
+/* ---------------- Shooting Star ---------------- */
+.shooting-star { position:absolute; width:3px; height:3px; background: #fff; border-radius:50%; box-shadow: 0 0 8px #fff; pointer-events:none; z-index:1; }
+.shooting-star-letter { position:absolute; color:#ffb6b9; font-family:'Dancing Script', cursive; font-size:1.5em; opacity:0; transition: opacity 0.5s; pointer-events:none; }
 
 </style>
 </head>
@@ -135,13 +135,10 @@ section.visible { opacity:1; transform: translateY(0) rotate(0deg); }
 <!-- Heartfelt Message -->
 <section class="heartfelt-message">
     <p>
-        Saknaah, you are my favorite “oops, I fell for you again” moment every single day.  
-        You make my heart race faster than my Wi-Fi on a video call, and my smile is bigger than my phone battery after a full charge—just because of you.  
-        Every laugh, every little silly moment, every quiet hug with you feels like a movie scene I never want to end.  
-        I want to be your partner-in-crime, your personal comedian, your midnight snack companion, and the reason you roll your eyes while secretly smiling.  
-        You’re not just my love—you’re my home, my happiness, and the adventure I never knew I needed.  
-        Today and every day, I promise to love you deeper, make you laugh harder, and cherish you endlessly, even when I steal the blanket.  
-        My heart is yours, completely and forever, and I wouldn’t trade you for all the chocolate in the world.
+        Saknaah, these images may not be perfect—they’re just snapshots, a little blurry, a little ordinary—but they are ours. Every laugh, every silly pose, every quiet hug captured here is a memory I would never trade for anything.  
+        You make the ordinary magical. Even the simplest picture becomes a universe when I see it with you. You are my favorite “oops, I fell for you again” every single day. You make my heart race faster than my Wi-Fi on a video call, and my smile is bigger than my phone battery after a full charge—just because of you.  
+        I want to be your partner-in-crime, your personal comedian, your midnight snack companion, the reason you roll your eyes while secretly smiling. You’re not just my love—you’re my home, my happiness, and the adventure I never knew I needed.  
+        Today, tomorrow, and every day, I promise to love you deeper, make you laugh harder, and cherish you endlessly—even when I steal the blanket. My heart is yours, completely and forever, and I wouldn’t trade you for all the chocolate, stars, or shooting comets in the universe.
     </p>
     <h3>Happy Valentine’s Day, My Love ❤️ — Let’s Keep Falling for Each Other!</h3>
 </section>
@@ -248,6 +245,47 @@ document.body.addEventListener('click',e=>{
 
 // ---------------- Scroll Indicator Click ----------------
 document.querySelector('.scroll-indicator').addEventListener('click',()=>{ window.scrollBy({top:window.innerHeight,behavior:'smooth'}); });
+
+// ---------------- Shooting Stars Spelling Name ----------------
+const nameToSpell="Saknaah";
+function shootingStarSpell(){
+    const startX=Math.random()*window.innerWidth*0.6+window.innerWidth*0.2;
+    const startY=Math.random()*window.innerHeight*0.2+window.innerHeight*0.1;
+    const endX=startX+window.innerWidth*0.3;
+    const endY=startY+window.innerHeight*0.2;
+
+    // Create shooting star
+    const star=document.createElement('div'); star.className='shooting-star';
+    star.style.left=`${startX}px`; star.style.top=`${startY}px`;
+    document.body.appendChild(star);
+
+    let letters = [];
+    for(let i=0;i<nameToSpell.length;i++){
+        const l=document.createElement('div'); l.className='shooting-star-letter';
+        l.textContent=nameToSpell[i]; l.style.left=startX+'px'; l.style.top=startY+'px';
+        document.body.appendChild(l); letters.push(l);
+    }
+
+    let t=0;
+    const duration=3000;
+    const interval=20;
+    const timer=setInterval(()=>{
+        t+=interval;
+        const progress=t/duration;
+        star.style.left=`${startX + (endX-startX)*progress}px`;
+        star.style.top=`${startY + (endY-startY)*progress}px`;
+        letters.forEach((l,i)=>{
+            const letterProgress = (progress-(i*0.1));
+            if(letterProgress>0 && letterProgress<=1){
+                l.style.left=`${startX + (endX-startX)*letterProgress}px`;
+                l.style.top=`${startY + (endY-startY)*letterProgress}px`;
+                l.style.opacity=1;
+            } else l.style.opacity=0;
+        });
+        if(progress>=1){ clearInterval(timer); star.remove(); letters.forEach(l=>l.remove()); }
+    },interval);
+}
+setInterval(shootingStarSpell,8000);
 
 </script>
 </body>
