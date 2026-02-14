@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Valentine's Day, Saknaah ❤️</title>
 <style>
-    /* General Body Styles */
     body {
         margin: 0;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -128,14 +127,28 @@
         font-size: 2em;
         color: #ff4d6d;
     }
+
+    /* Play Music Button */
+    #playMusicBtn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 1em;
+        background-color: #ff4d6d;
+        border: none;
+        border-radius: 12px;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        z-index: 10000;
+    }
 </style>
 </head>
 <body>
 
-<!-- Floating Hearts Animation -->
 <div class="hearts-container"></div>
 
-<!-- Video Love Section -->
 <section class="video-section">
     <h2>Our Story in Motion 🎥</h2>
     <p>Every moment with you feels like a movie I never want to end. From our quiet talks to our laughter that fills the air, every second with you is a treasure I hold close to my heart.</p>
@@ -146,7 +159,6 @@
     </video>
 </section>
 
-<!-- Image Slideshow Section -->
 <section class="slideshow-section">
     <h2>Moments With You 🌹</h2>
     <div class="slideshow-container">
@@ -156,7 +168,6 @@
     </div>
 </section>
 
-<!-- Heartfelt Message Section -->
 <section class="heartfelt-message">
     <p>
         Saknaah, you are my favorite “oops, I fell for you again” moment every single day.  
@@ -172,8 +183,11 @@
 
 <!-- Background Music -->
 <audio id="loveMusic">
-    <source src="song1.mp3" type="audio/mpeg">
+    <source src="https://files.catbox.moe/hit112.mp3" type="audio/mpeg">
 </audio>
+
+<!-- Play Music Button -->
+<button id="playMusicBtn">Play Music ❤️</button>
 
 <script>
     // Floating Hearts
@@ -208,21 +222,26 @@
     }
     showSlides();
 
-    // Music playback after first click anywhere
+    // Music playback
     const loveMusic = document.getElementById('loveMusic');
-    const songs = ['song1.mp3','song2.mp3'];
+    const songs = [
+        'https://files.catbox.moe/hit112.mp3',
+        'https://files.catbox.moe/ob8gdo.mp3'
+    ];
     let current = 0;
 
-    document.body.addEventListener('click', () => {
-        loveMusic.play().catch(() => {});
-    }, {once: true});
+    document.getElementById('playMusicBtn').addEventListener('click', () => {
+        loveMusic.src = songs[current];
+        loveMusic.play().catch(()=>{});
+    });
 
     loveMusic.addEventListener('ended', () => {
         current++;
         if(current >= songs.length) current = 0;
         loveMusic.src = songs[current];
-        loveMusic.play().catch(() => {});
+        loveMusic.play().catch(()=>{});
     });
 </script>
+
 </body>
 </html>
