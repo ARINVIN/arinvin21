@@ -28,13 +28,27 @@ body{
   position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden;
 }
 .heart{
-  position:absolute; width:20px; height:20px; background:#ff4d6d; transform:rotate(45deg); border-radius:3px; opacity:0.9;
+  position:absolute;
+  width:25px;
+  height:25px;
+  background:#ff4d6d;
+  transform:rotate(45deg);
+  border-radius:3px;
+  opacity:0.9;
+  transform-origin:center;
 }
-.heart:before,.heart:after{
-  content:""; position:absolute; width:20px; height:20px; background:inherit; border-radius:50%;
+.heart:before,
+.heart:after{
+  content:"";
+  position:absolute;
+  width:25px;
+  height:25px;
+  background:#ff4d6d;
+  border-radius:50%;
+  transform-origin:center;
 }
-.heart:before{top:-10px; left:0;}
-.heart:after{left:10px; top:0;}
+.heart:before{top:-12.5px; left:0;}
+.heart:after{top:0; left:12.5px;}
 
 /* Video Section */
 .video-section{text-align:center; padding:60px 20px; position:relative; z-index:1;}
@@ -109,14 +123,16 @@ for(let i=0;i<100;i++){
 const heartsContainer = document.querySelector('.hearts-container');
 function createHeart(){
     const heart = document.createElement('div'); heart.classList.add('heart');
-    const size = Math.random()*15+15;
+    const size = Math.random()*20+20;
     heart.style.width = heart.style.height = `${size}px`;
     heart.style.left = `${Math.random()*100}%`;
     heart.style.bottom = '-30px';
     heart.style.background = ['#ff4d6d','#ff8080','#ffc0cb'][Math.floor(Math.random()*3)];
+
     const floatDuration = Math.random()*10+8;
-    const swayAmplitude = Math.random()*30+20;
+    const swayAmplitude = Math.random()*25+15;
     const rotationSpeed = (Math.random()*2-1)*180;
+
     let start = null;
     function animateHeart(timestamp){
         if(!start) start = timestamp;
@@ -129,10 +145,11 @@ function createHeart(){
             requestAnimationFrame(animateHeart);
         } else heart.remove();
     }
+
     heartsContainer.appendChild(heart);
     requestAnimationFrame(animateHeart);
 }
-setInterval(createHeart, 500);
+setInterval(createHeart, 400);
 
 // ---------------- Slideshow ----------------
 const slides=document.querySelectorAll('.slide'); let slideIndex=0;
