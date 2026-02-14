@@ -182,7 +182,7 @@
 </section>
 
 <!-- Background Music -->
-<audio id="loveMusic"></audio>
+<audio id="loveMusic" src="https://files.catbox.moe/hit112.mp3"></audio>
 
 <!-- Play Music Button -->
 <button id="playMusicBtn">Play Music ❤️</button>
@@ -230,10 +230,8 @@
 
     const playButton = document.getElementById('playMusicBtn');
     playButton.addEventListener('click', () => {
-        loveMusic.src = songs[current];
-        loveMusic.load(); // ensure browser sees new src
         loveMusic.play().then(() => {
-            playButton.style.display = 'none'; // hide button after playing
+            playButton.style.display = 'none';
         }).catch(err => console.log('Audio play failed:', err));
     });
 
@@ -241,7 +239,7 @@
         current++;
         if(current >= songs.length) current = 0;
         loveMusic.src = songs[current];
-        loveMusic.load();
+        loveMusic.load(); // reload new song
         loveMusic.play().catch(err => console.log('Audio play failed:', err));
     });
 </script>
