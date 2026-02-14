@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Valentine's Day, Saknaah ❤️</title>
     <style>
-        /* General Body Styles */
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,13 +15,11 @@
 
         h2, h3 { text-align: center; }
 
-        /* Floating Hearts */
         .hearts-container {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
             pointer-events: none;
-            overflow: hidden;
             z-index: 9999;
         }
 
@@ -32,7 +29,6 @@
             background: #ff4d6d;
             transform: rotate(45deg);
             animation: floatUp linear infinite;
-            opacity: 0.8;
         }
 
         .heart:before, .heart:after {
@@ -50,164 +46,114 @@
             100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
         }
 
-        /* Video Section */
-        .video-section {
+        .video-section, .slideshow-section {
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(to bottom, #ffb6b9, #fae3d9);
-        }
-        .love-video {
-            width: 90%;
-            max-width: 900px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            padding: 40px 20px;
         }
 
-        /* Slideshow Section */
-        .slideshow-section {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(to bottom, #ffd1dc, #ffb6b9);
-        }
-        .slideshow-container {
-            position: relative;
-            max-width: 900px;
-            margin: auto;
-        }
-        .slide {
-            display: none;
-            width: 100%;
+        .love-video, .slide {
+            width: 90%;
+            max-width: 800px;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
-        .fade {
-            animation: fadeEffect 3s infinite;
-        }
-        @keyframes fadeEffect {
-            0% { opacity: 0; }
-            10% { opacity: 1; }
-            33% { opacity: 1; }
-            43% { opacity: 0; }
-            100% { opacity: 0; }
-        }
 
-        /* Message Section */
+        .slide { display: none; margin: auto; }
+
         .heartfelt-message {
             text-align: center;
-            padding: 80px 20px;
-            background-color: #111;
-        }
-        .heartfelt-message p {
-            max-width: 850px;
-            margin: auto;
-            font-size: 1.25em;
-            line-height: 1.8;
+            padding: 60px 20px;
+            background-color: rgba(0,0,0,0.8);
         }
 
-        /* Interactive Music Button */
-        #music-button {
+        /* The Music Button */
+        #music-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            z-index: 10001;
+            z-index: 10000;
             background: #ff4d6d;
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 15px 25px;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
     </style>
 </head>
 <body>
 
     <div class="hearts-container"></div>
-
-    <button id="music-button" onclick="startMusic()">Play Music 🎵</button>
+    
+    <button id="music-btn" onclick="handleMusic()">Play Our Music 🎵</button>
     <audio id="loveMusic">
         <source src="song1.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
     </audio>
 
     <section class="video-section">
         <h2>Our Story in Motion 🎥</h2>
-        <p>Every moment with you feels like a movie I never want to end.</p>
         <video controls autoplay muted loop playsinline class="love-video">
             <source src="WhatsApp Video 2026-02-14 at 00.55.34.mp4" type="video/mp4">
-            Your browser does not support the video tag.
         </video>
     </section>
 
     <section class="slideshow-section">
         <h2>Moments With You 🌹</h2>
         <div class="slideshow-container">
-            <img src="WhatsApp Image 2026-02-14 at 01.02.11.jpeg" class="slide" alt="Our Moment 1">
-            <img src="WhatsApp Image 2026-02-14 at 01.02.12 (1).jpeg" class="slide" alt="Our Moment 2">
-            <img src="WhatsApp Image 2026-02-14 at 01.02.12.jpeg" class="slide" alt="Our Moment 3">
+            <img src="WhatsApp Image 2026-02-14 at 01.02.11.jpeg" class="slide">
+            <img src="WhatsApp Image 2026-02-14 at 01.02.12 (1).jpeg" class="slide">
+            <img src="WhatsApp Image 2026-02-14 at 01.02.12.jpeg" class="slide">
         </div>
     </section>
 
     <section class="heartfelt-message">
-        <p>
-            Saknaah, you are my favorite “oops, I fell for you again” moment every single day.  
-            You make my heart race faster than my Wi-Fi on a video call, and my smile is bigger than my phone battery after a full charge—just because of you.  
-            Every laugh, every little silly moment, every quiet hug with you feels like a movie scene I never want to end.  
-            You’re not just my love—you’re my home, my happiness, and the adventure I never knew I needed.  
-            Today and every day, I promise to love you deeper, make you laugh harder, and cherish you endlessly, even when I steal the blanket.  
-            My heart is yours, completely and forever, and I wouldn’t trade you for all the chocolate in the world.
-        </p>
-        <h3 style="color: #ff4d6d;">Happy Valentine’s Day, My Love ❤️</h3>
+        <p>Saknaah, you are my home, my happiness, and my favorite adventure. Happy Valentine's Day! ❤️</p>
     </section>
 
     <script>
-        // --- 1. Audio Logic ---
+        // 1. Audio Sequence Logic
         const audio = document.getElementById('loveMusic');
-        const btn = document.getElementById('music-button');
-        const songs = ['song1.mp3', 'song2.mp3']; // Ensure these names match your files in GitHub
-        let currentSongIndex = 0;
+        const btn = document.getElementById('music-btn');
+        const songs = ['song1.mp3', 'song2.mp3'];
+        let currentIdx = 0;
 
-        function startMusic() {
-            audio.play().catch(e => console.log("Playback error:", e));
-            btn.style.display = 'none'; // Hide button once playing
+        function handleMusic() {
+            audio.play();
+            btn.style.display = 'none';
         }
 
-        // Auto-play next song when current one ends
         audio.addEventListener('ended', function() {
-            currentSongIndex++;
-            if (currentSongIndex >= songs.length) {
-                currentSongIndex = 0; // Loop back to song 1
-            }
-            audio.src = songs[currentSongIndex];
+            currentIdx++;
+            if (currentIdx >= songs.length) currentIdx = 0;
+            audio.src = songs[currentIdx];
             audio.play();
         });
 
-        // --- 2. Floating Hearts ---
+        // 2. Hearts Logic
         function createHeart() {
+            const container = document.querySelector('.hearts-container');
             const heart = document.createElement('div');
             heart.classList.add('heart');
             heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = Math.random() * 3 + 3 + "s";
-            document.querySelector('.hearts-container').appendChild(heart);
-            setTimeout(() => heart.remove(), 6000);
+            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
         }
         setInterval(createHeart, 300);
 
-        // --- 3. Slideshow ---
-        let slideIndex = 0;
-        function showSlides() {
+        // 3. Slideshow Logic
+        let sIdx = 0;
+        function runSlides() {
             let slides = document.getElementsByClassName("slide");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}    
-            slides[slideIndex-1].style.display = "block";  
-            slides[slideIndex-1].classList.add('fade');
-            setTimeout(showSlides, 4000); 
+            for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
+            sIdx++;
+            if (sIdx > slides.length) sIdx = 1;
+            slides[sIdx-1].style.display = "block";
+            setTimeout(runSlides, 3000);
         }
-        showSlides();
+        runSlides();
     </script>
 </body>
 </html>
