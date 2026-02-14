@@ -12,7 +12,7 @@ body {
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(135deg, #ffdde1, #ee9ca7);
     background-size: 400% 400%;
-    animation: gradientBG 20s ease infinite;
+    animation: gradientBG 15s ease infinite;
     color: #fff;
     overflow-x: hidden;
     opacity: 0;
@@ -41,10 +41,9 @@ h2, h3 {
 }
 .heart {
     position: absolute;
-    width: 20px; height: 20px;
     background: #ff4d6d;
     transform: rotate(45deg);
-    opacity: 0.8;
+    opacity: 0.9;
     animation: floatUp linear infinite;
     border-radius: 3px;
 }
@@ -58,19 +57,19 @@ h2, h3 {
 .heart:after { left: 10px; top: 0; }
 @keyframes floatUp {
     0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
-    100% { transform: translateY(-120vh) rotate(405deg); opacity: 0; }
+    100% { transform: translateY(-150vh) rotate(405deg); opacity: 0; }
 }
 
 /* Heartbeat Pulse */
 @keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
 }
 .heartbeat { animation: heartbeat 1.2s infinite; }
 
 /* ---------------- Sections fade-in ---------------- */
-section { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
-section.visible { opacity: 1; transform: translateY(0); }
+section { opacity: 0; transform: translateY(30px) rotate(0deg); transition: all 1s ease; }
+section.visible { opacity: 1; transform: translateY(0) rotate(0deg); }
 
 /* ---------------- Video Section ---------------- */
 .video-section {
@@ -81,7 +80,21 @@ section.visible { opacity: 1; transform: translateY(0); }
 }
 .video-section h2 { font-size: 3em; }
 .video-section p { font-size: 1.2em; margin-bottom: 30px; }
-.love-video { width: 90%; max-width: 900px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+.love-video { 
+    width: 90%; max-width: 900px; 
+    border-radius: 20px; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    position: relative;
+}
+.video-glow {
+    position: absolute;
+    top: -10px; left: -10px; right: -10px; bottom: -10px;
+    border-radius: 25px;
+    box-shadow: 0 0 60px 15px rgba(255,77,109,0.5);
+    animation: glowPulse 3s infinite alternate;
+    pointer-events: none;
+}
+@keyframes glowPulse { 0% { box-shadow: 0 0 40px 10px rgba(255,77,109,0.3);} 100% { box-shadow:0 0 80px 20px rgba(255,77,109,0.6);} }
 
 /* ---------------- Slideshow ---------------- */
 .slideshow-section {
@@ -105,8 +118,8 @@ section.visible { opacity: 1; transform: translateY(0); }
     width: 100%; height: 100%;
     top: 0; left: 0;
     opacity: 0;
-    transform: scale(1.05);
-    transition: opacity 2s ease, transform 8s ease;
+    transform: scale(1);
+    transition: opacity 3s ease, transform 8s ease;
 }
 .slide img {
     width: 100%; height: 100%;
@@ -115,7 +128,7 @@ section.visible { opacity: 1; transform: translateY(0); }
     box-shadow: 0 15px 35px rgba(0,0,0,0.3);
     filter: brightness(1.1);
 }
-.slide.active { opacity: 1; transform: scale(1.1); }
+.slide.active { opacity: 1; transform: scale(1.2); }
 
 /* ---------------- Heartfelt Message ---------------- */
 .heartfelt-message {
@@ -142,27 +155,27 @@ section.visible { opacity: 1; transform: translateY(0); }
     background: #fff0ff;
     border-radius: 50%;
     pointer-events: none;
-    opacity: 0.8;
+    opacity: 0.9;
     animation: sparkleAnim linear infinite;
 }
 @keyframes sparkleAnim {
     0% { transform: translateY(0) scale(1); opacity: 0.8; }
-    100% { transform: translateY(-150px) scale(0.5); opacity: 0; }
+    100% { transform: translateY(-200px) scale(0.5); opacity: 0; }
 }
 
 /* ---------------- Floating Love Words ---------------- */
 .love-word {
     position: fixed;
     color: #ffb6b9;
-    font-size: 1.2em;
+    font-size: 1.5em;
     pointer-events: none;
     user-select: none;
-    opacity: 0.8;
-    animation: wordFloat 10s linear infinite;
+    opacity: 0.9;
+    animation: wordFloat 12s linear infinite;
 }
 @keyframes wordFloat {
     0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity:0; }
-    10% { opacity:0.8; }
+    10% { opacity:0.9; }
     100% { transform: translateY(-50vh) translateX(50px) rotate(360deg); opacity:0; }
 }
 
@@ -171,47 +184,47 @@ section.visible { opacity: 1; transform: translateY(0); }
     position: fixed;
     bottom: 20px;
     right: 20px;
-    font-size: 2em;
+    font-size: 2.5em;
     color: #ff4d6d;
     animation: bounce 2s infinite;
     cursor: pointer;
 }
 @keyframes bounce {
     0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-15px); }
 }
 
 /* ---------------- Confetti ---------------- */
 .confetti-piece {
     position: absolute;
-    width: 8px; height: 8px;
+    width: 10px; height: 10px;
     background: #ff4d6d;
     opacity: 0.9;
     pointer-events: none;
-    animation: confettiAnim 2s forwards;
+    animation: confettiAnim 3s forwards;
 }
 @keyframes confettiAnim {
     0% { transform: translateY(0) rotate(0deg); opacity:1; }
-    100% { transform: translateY(200px) rotate(360deg); opacity:0; }
+    100% { transform: translateY(250px) rotate(360deg); opacity:0; }
 }
 </style>
 </head>
 <body>
 
-<!-- Floating Hearts -->
 <div class="hearts-container"></div>
 
-<!-- Video Section -->
 <section class="video-section">
     <h2 class="heartbeat">Our Story in Motion 🎥</h2>
     <p>Every moment with you feels like a movie I never want to end. From our quiet talks to our laughter that fills the air, every second with you is a treasure I hold close to my heart.</p>
-    <video id="loveVideo" muted autoplay loop playsinline controls class="love-video">
-        <source src="https://files.catbox.moe/lrectv.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <div style="position:relative; display:inline-block;">
+        <video id="loveVideo" muted autoplay loop playsinline controls class="love-video">
+            <source src="https://files.catbox.moe/lrectv.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-glow"></div>
+    </div>
 </section>
 
-<!-- Slideshow Section -->
 <section class="slideshow-section">
     <h2>Moments With You 🌹</h2>
     <div class="slideshow-container">
@@ -221,7 +234,6 @@ section.visible { opacity: 1; transform: translateY(0); }
     </div>
 </section>
 
-<!-- Heartfelt Message Section -->
 <section class="heartfelt-message">
     <p>
         Saknaah, you are my favorite “oops, I fell for you again” moment every single day.  
@@ -235,7 +247,6 @@ section.visible { opacity: 1; transform: translateY(0); }
     <h3>Happy Valentine’s Day, My Love ❤️ — Let’s Keep Falling for Each Other (Even When I Steal the Blanket!)</h3>
 </section>
 
-<!-- Scroll Indicator -->
 <div class="scroll-indicator">❤️</div>
 
 <script>
@@ -247,19 +258,18 @@ const heartsContainer = document.querySelector('.hearts-container');
 function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
-    const size = Math.random()*25+10;
+    const size = Math.random()*30+20;
     heart.style.width = `${size}px`;
     heart.style.height = `${size}px`;
     heart.style.left = `${Math.random()*100}%`;
     heart.style.background = ['#ff4d6d','#ff8080','#ffc0cb'][Math.floor(Math.random()*3)];
-    heart.style.animationDuration = `${Math.random()*5+5}s`;
-    heart.style.opacity = Math.random()*0.5+0.5;
+    heart.style.animationDuration = `${Math.random()*5+4}s`;
     heartsContainer.appendChild(heart);
-    setTimeout(()=>heart.remove(),10000);
+    setTimeout(()=>heart.remove(),12000);
 }
-setInterval(createHeart, 300);
+setInterval(createHeart, 200);
 
-// ---------------- Slideshow Zoom + Fade ----------------
+// ---------------- Slideshow ----------------
 const zoomSlides = document.querySelectorAll('.slide');
 let zoomIndex = 0;
 function showZoomSlides() {
@@ -271,7 +281,7 @@ function showZoomSlides() {
 }
 showZoomSlides();
 
-// ---------------- Fade-in Sections ----------------
+// ---------------- Sections fade-in ----------------
 const allSections = document.querySelectorAll('section');
 function checkVisible() {
     const triggerBottom = window.innerHeight * 0.85;
@@ -292,9 +302,9 @@ function spawnLoveWord() {
     word.style.left = `${Math.random()*80+10}%`;
     word.style.top = `100vh`;
     document.body.appendChild(word);
-    setTimeout(()=>word.remove(),10000);
+    setTimeout(()=>word.remove(),12000);
 }
-setInterval(spawnLoveWord, 3000);
+setInterval(spawnLoveWord,1000);
 
 // ---------------- Sparkles ----------------
 function createSparkle() {
@@ -305,17 +315,17 @@ function createSparkle() {
     document.body.appendChild(sparkle);
     setTimeout(()=>sparkle.remove(),2000);
 }
-setInterval(createSparkle,500);
+setInterval(createSparkle,300);
 
-// ---------------- Confetti on Message ----------------
+// ---------------- Confetti ----------------
 function confettiBurst() {
-    for(let i=0;i<30;i++){
+    for(let i=0;i<60;i++){
         const c = document.createElement('div');
         c.className='confetti-piece';
         c.style.left = `${Math.random()*80+10}%`;
         c.style.background = ['#ff4d6d','#ff8080','#ffc0cb'][Math.floor(Math.random()*3)];
         document.body.appendChild(c);
-        setTimeout(()=>c.remove(),2000);
+        setTimeout(()=>c.remove(),3000);
     }
 }
 const messageSection = document.querySelector('.heartfelt-message');
@@ -331,18 +341,17 @@ window.addEventListener('scroll', ()=>{
 document.body.addEventListener('click', e=>{
     const heart = document.createElement('div');
     heart.className='heart';
-    heart.style.width='15px';
-    heart.style.height='15px';
-    heart.style.left = `${e.clientX}px`;
-    heart.style.top = `${e.clientY}px`;
+    const size = Math.random()*20+20;
+    heart.style.width = heart.style.height = `${size}px`;
+    heart.style.left = `${e.clientX-size/2}px`;
+    heart.style.top = `${e.clientY-size/2}px`;
     heart.style.background = ['#ff4d6d','#ff8080','#ffc0cb'][Math.floor(Math.random()*3)];
     heartsContainer.appendChild(heart);
-    setTimeout(()=>heart.remove(),3000);
+    setTimeout(()=>heart.remove(),5000);
 });
 
 // ---------------- Scroll Indicator Click ----------------
 document.querySelector('.scroll-indicator').addEventListener('click', ()=>{ window.scrollBy({top:window.innerHeight,behavior:'smooth'}); });
-
 </script>
 </body>
 </html>
