@@ -13,9 +13,11 @@
             color: #fff;
             overflow-x: hidden;
         }
+
         h2, h3 {
             text-align: center;
         }
+
         /* Floating Hearts */
         .hearts-container {
             position: fixed;
@@ -27,6 +29,7 @@
             overflow: hidden;
             z-index: 9999;
         }
+
         .heart {
             position: absolute;
             width: 20px;
@@ -36,6 +39,7 @@
             animation: floatUp linear infinite;
             opacity: 0.8;
         }
+
         .heart:before,
         .heart:after {
             content: "";
@@ -45,49 +49,60 @@
             background: #ff4d6d;
             border-radius: 50%;
         }
+
         .heart:before { top: -10px; left: 0; }
         .heart:after { left: 10px; top: 0; }
+
         @keyframes floatUp {
             0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
             100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
         }
+
         /* Video Section */
         .video-section {
             text-align: center;
             padding: 60px 20px;
             background: linear-gradient(to bottom, #ffb6b9, #fae3d9);
         }
+
         .video-section h2 { font-size: 2.5em; margin-bottom: 10px; }
         .video-section p { font-size: 1.2em; margin-bottom: 30px; }
+
         .love-video {
             width: 90%;
             max-width: 900px;
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
+
         /* Slideshow Section */
         .slideshow-section {
             text-align: center;
             padding: 60px 20px;
             background: linear-gradient(to bottom, #ffd1dc, #ffb6b9);
         }
+
         .slideshow-section h2 { font-size: 2.5em; margin-bottom: 30px; }
+
         .slideshow-container {
             position: relative;
             max-width: 900px;
             margin: auto;
         }
+
         .slide {
             display: none;
             width: 100%;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
+
         .fade {
             animation-name: fade;
             animation-duration: 3s;
             animation-iteration-count: infinite;
         }
+
         @keyframes fade {
             0% { opacity: 0; }
             10% { opacity: 1; }
@@ -95,18 +110,21 @@
             43% { opacity: 0; }
             100% { opacity: 0; }
         }
+
         /* Heartfelt Message Section */
         .heartfelt-message {
             text-align: center;
             padding: 80px 20px;
             background-color: #111;
         }
+
         .heartfelt-message p {
             max-width: 850px;
             margin: auto;
             font-size: 1.25em;
             line-height: 1.8;
         }
+
         .heartfelt-message h3 {
             margin-top: 50px;
             font-size: 2em;
@@ -115,21 +133,19 @@
     </style>
 </head>
 <body>
-    <!-- Floating Hearts Animation -->
+
     <div class="hearts-container"></div>
 
-    <!-- Video Love Section -->
     <section class="video-section">
         <h2>Our Story in Motion 🎥</h2>
-        <p>Every moment with you feels like a movie I never want to end. From our quiet talks to our laughter that fills the air, every second with you is a treasure I hold close to my heart.</p>
-       
+        <p>Every moment with you feels like a movie I never want to end.</p>
+        
         <video controls autoplay muted loop playsinline class="love-video">
-            <source src="https://files.catbox.moe/lrectv.mp4" type="video/mp4">
+            <source src="WhatsApp Video 2026-02-14 at 00.55.34.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </section>
 
-    <!-- Image Slideshow Section -->
     <section class="slideshow-section">
         <h2>Moments With You 🌹</h2>
         <div class="slideshow-container">
@@ -139,29 +155,26 @@
         </div>
     </section>
 
-    <!-- Heartfelt Message Section -->
     <section class="heartfelt-message">
         <p>
-            Saknaah, you are my favorite “oops, I fell for you again” moment every single day.
-            You make my heart race faster than my Wi-Fi on a video call, and my smile is bigger than my phone battery after a full charge—just because of you.
-            Every laugh, every little silly moment, every quiet hug with you feels like a movie scene I never want to end.
-            I want to be your partner-in-crime, your personal comedian, your midnight snack companion, and the reason you roll your eyes while secretly smiling.
-            You’re not just my love—you’re my home, my happiness, and the adventure I never knew I needed.
-            Today and every day, I promise to love you deeper, make you laugh harder, and cherish you endlessly, even when I steal the blanket.
+            Saknaah, you are my favorite “oops, I fell for you again” moment every single day.  
+            You make my heart race faster than my Wi-Fi on a video call, and my smile is bigger than my phone battery after a full charge—just because of you.  
+            Every laugh, every little silly moment, every quiet hug with you feels like a movie scene I never want to end.  
+            I want to be your partner-in-crime, your personal comedian, your midnight snack companion, and the reason you roll your eyes while secretly smiling.  
+            You’re not just my love—you’re my home, my happiness, and the adventure I never knew I needed.  
+            Today and every day, I promise to love you deeper, make you laugh harder, and cherish you endlessly, even when I steal the blanket.  
             My heart is yours, completely and forever, and I wouldn’t trade you for all the chocolate in the world.
         </p>
-        <h3>Happy Valentine’s Day, My Love ❤️ — Let’s Keep Falling for Each Other (Even When I Steal the Blanket!)</h3>
+        <h3>Happy Valentine’s Day, My Love ❤️ — Let’s Keep Falling for Each Other!</h3>
     </section>
 
-    <!-- Background Music -->
-    <audio autoplay loop>
-        <source src="WhatsApp Audio 2026-02-14 at 02.25.11.mpeg" type="audio/mpeg">
+    <audio id="loveMusic">
+        <source src="song1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
-    <!-- Scripts -->
     <script>
-        // Floating Hearts
+        // Floating Hearts Logic
         const heartsContainer = document.querySelector('.hearts-container');
         function createHeart() {
             const heart = document.createElement('div');
@@ -177,7 +190,7 @@
         }
         setInterval(createHeart, 300);
 
-        // Slideshow
+        // Slideshow Logic
         let slideIndex = 0;
         const slides = document.querySelectorAll('.slide');
         function showSlides() {
@@ -192,6 +205,24 @@
             setTimeout(showSlides, 4000);
         }
         showSlides();
+
+        // Music Sequence Logic
+        const audio = document.getElementById('loveMusic');
+        const songs = ['song1.mp3', 'song2.mp3']; // Ensure files are renamed in GitHub
+        let current = 0;
+
+        // Browsers block autoplay. This starts music when she clicks anywhere on the page.
+        document.addEventListener('click', function() {
+            audio.play().catch(e => console.log("Audio play prevented until interaction."));
+        }, { once: true });
+
+        // When the first song ends, play the second
+        audio.addEventListener('ended', () => {
+            current++;
+            if (current >= songs.length) current = 0; // Loops back to the first song
+            audio.src = songs[current];
+            audio.play();
+        });
     </script>
 </body>
 </html>
