@@ -6,126 +6,204 @@
 <title>Happy Valentine's Day, Saknaah ❤️</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 <style>
-    /* General Body */
-    body {
-        margin: 0;
-        font-family: 'Roboto', sans-serif;
-        background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
-        color: #fff;
-        overflow-x: hidden;
-    }
-    h2, h3 {
-        font-family: 'Dancing Script', cursive;
-        text-align: center;
-        margin: 0.5em 0;
-    }
-    @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
+/* ---------------- General Body ---------------- */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    background-size: 400% 400%;
+    animation: gradientBG 20s ease infinite;
+    color: #fff;
+    overflow-x: hidden;
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+body.loaded { opacity: 1; }
+h2, h3 {
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+    margin: 0.5em 0;
+}
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-    /* Floating Hearts */
-    .hearts-container {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        pointer-events: none; z-index: 9999; overflow: hidden;
-    }
-    .heart {
-        position: absolute;
-        width: 20px; height: 20px;
-        background: #ff4d6d;
-        transform: rotate(45deg);
-        opacity: 0.8;
-        animation: floatUp linear infinite;
-    }
-    .heart:before, .heart:after {
-        content: ""; position: absolute;
-        width: 20px; height: 20px;
-        background: inherit; border-radius: 50%;
-    }
-    .heart:before { top: -10px; left: 0; }
-    .heart:after { left: 10px; top: 0; }
-    @keyframes floatUp {
-        0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
-        100% { transform: translateY(-120vh) rotate(405deg); opacity: 0; }
-    }
+/* ---------------- Floating Hearts ---------------- */
+.hearts-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+.heart {
+    position: absolute;
+    width: 20px; height: 20px;
+    background: #ff4d6d;
+    transform: rotate(45deg);
+    opacity: 0.8;
+    animation: floatUp linear infinite;
+    border-radius: 3px;
+}
+.heart:before, .heart:after {
+    content: "";
+    position: absolute;
+    width: 20px; height: 20px;
+    background: inherit; border-radius: 50%;
+}
+.heart:before { top: -10px; left: 0; }
+.heart:after { left: 10px; top: 0; }
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
+    100% { transform: translateY(-120vh) rotate(405deg); opacity: 0; }
+}
 
-    /* Sections fade-in */
-    section { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
-    section.visible { opacity: 1; transform: translateY(0); }
+/* Heartbeat Pulse */
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+.heartbeat { animation: heartbeat 1.2s infinite; }
 
-    /* Video Section */
-    .video-section {
-        text-align: center;
-        padding: 60px 20px;
-        background: linear-gradient(to bottom, #ffb6b9, #fae3d9);
-    }
-    .video-section h2 { font-size: 3em; }
-    .video-section p { font-size: 1.2em; margin-bottom: 30px; }
-    .love-video { width: 90%; max-width: 900px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+/* ---------------- Sections fade-in ---------------- */
+section { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+section.visible { opacity: 1; transform: translateY(0); }
 
-    /* Slideshow Section */
-    .slideshow-section {
-        text-align: center;
-        padding: 60px 20px;
-        background: linear-gradient(to bottom, #ffd1dc, #ffb6b9);
-    }
-    .slideshow-section h2 { font-size: 2.8em; margin-bottom: 30px; }
-    .slideshow-container {
-        position: relative;
-        max-width: 900px;
-        margin: auto;
-        height: 500px;
-        overflow: hidden;
-        border-radius: 20px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-    }
-    .slide {
-        position: absolute;
-        width: 100%; height: 100%;
-        top: 0; left: 0;
-        opacity: 0;
-        transform: scale(1.05);
-        transition: opacity 2s ease, transform 8s ease;
-    }
-    .slide img {
-        width: 100%; height: 100%;
-        object-fit: cover;
-        border-radius: 20px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        filter: brightness(1.1);
-    }
-    .slide.active { opacity: 1; transform: scale(1.1); }
+/* ---------------- Video Section ---------------- */
+.video-section {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(to bottom, #ffb6b9, #fae3d9);
+    position: relative;
+}
+.video-section h2 { font-size: 3em; }
+.video-section p { font-size: 1.2em; margin-bottom: 30px; }
+.love-video { width: 90%; max-width: 900px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
 
-    /* Heartfelt Message Section */
-    .heartfelt-message {
-        text-align: center;
-        padding: 80px 20px;
-        background-color: #111;
-    }
-    .heartfelt-message p {
-        max-width: 850px;
-        margin: auto;
-        font-size: 1.25em;
-        line-height: 1.8;
-    }
-    .heartfelt-message h3 {
-        margin-top: 50px;
-        font-size: 2em;
-        color: #ff4d6d;
-    }
+/* ---------------- Slideshow ---------------- */
+.slideshow-section {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(to bottom, #ffd1dc, #ffb6b9);
+    position: relative;
+}
+.slideshow-section h2 { font-size: 2.8em; margin-bottom: 30px; }
+.slideshow-container {
+    position: relative;
+    max-width: 900px;
+    margin: auto;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+.slide {
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    opacity: 0;
+    transform: scale(1.05);
+    transition: opacity 2s ease, transform 8s ease;
+}
+.slide img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    filter: brightness(1.1);
+}
+.slide.active { opacity: 1; transform: scale(1.1); }
+
+/* ---------------- Heartfelt Message ---------------- */
+.heartfelt-message {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: #111;
+}
+.heartfelt-message p {
+    max-width: 850px;
+    margin: auto;
+    font-size: 1.25em;
+    line-height: 1.8;
+}
+.heartfelt-message h3 {
+    margin-top: 50px;
+    font-size: 2em;
+    color: #ff4d6d;
+}
+
+/* ---------------- Sparkles ---------------- */
+.sparkle {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: #fff0ff;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.8;
+    animation: sparkleAnim linear infinite;
+}
+@keyframes sparkleAnim {
+    0% { transform: translateY(0) scale(1); opacity: 0.8; }
+    100% { transform: translateY(-150px) scale(0.5); opacity: 0; }
+}
+
+/* ---------------- Floating Love Words ---------------- */
+.love-word {
+    position: fixed;
+    color: #ffb6b9;
+    font-size: 1.2em;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.8;
+    animation: wordFloat 10s linear infinite;
+}
+@keyframes wordFloat {
+    0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity:0; }
+    10% { opacity:0.8; }
+    100% { transform: translateY(-50vh) translateX(50px) rotate(360deg); opacity:0; }
+}
+
+/* ---------------- Scroll Indicator ---------------- */
+.scroll-indicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 2em;
+    color: #ff4d6d;
+    animation: bounce 2s infinite;
+    cursor: pointer;
+}
+@keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ---------------- Confetti ---------------- */
+.confetti-piece {
+    position: absolute;
+    width: 8px; height: 8px;
+    background: #ff4d6d;
+    opacity: 0.9;
+    pointer-events: none;
+    animation: confettiAnim 2s forwards;
+}
+@keyframes confettiAnim {
+    0% { transform: translateY(0) rotate(0deg); opacity:1; }
+    100% { transform: translateY(200px) rotate(360deg); opacity:0; }
+}
 </style>
 </head>
 <body>
 
+<!-- Floating Hearts -->
 <div class="hearts-container"></div>
 
+<!-- Video Section -->
 <section class="video-section">
-    <h2>Our Story in Motion 🎥</h2>
+    <h2 class="heartbeat">Our Story in Motion 🎥</h2>
     <p>Every moment with you feels like a movie I never want to end. From our quiet talks to our laughter that fills the air, every second with you is a treasure I hold close to my heart.</p>
     <video id="loveVideo" muted autoplay loop playsinline controls class="love-video">
         <source src="https://files.catbox.moe/lrectv.mp4" type="video/mp4">
@@ -133,6 +211,7 @@
     </video>
 </section>
 
+<!-- Slideshow Section -->
 <section class="slideshow-section">
     <h2>Moments With You 🌹</h2>
     <div class="slideshow-container">
@@ -142,6 +221,7 @@
     </div>
 </section>
 
+<!-- Heartfelt Message Section -->
 <section class="heartfelt-message">
     <p>
         Saknaah, you are my favorite “oops, I fell for you again” moment every single day.  
@@ -155,48 +235,114 @@
     <h3>Happy Valentine’s Day, My Love ❤️ — Let’s Keep Falling for Each Other (Even When I Steal the Blanket!)</h3>
 </section>
 
+<!-- Scroll Indicator -->
+<div class="scroll-indicator">❤️</div>
+
 <script>
-    // Floating Hearts
-    const heartsContainer = document.querySelector('.hearts-container');
-    function createHeart() {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        const size = Math.random()*25+10;
-        heart.style.width = `${size}px`;
-        heart.style.height = `${size}px`;
-        heart.style.left = `${Math.random()*100}%`;
-        heart.style.background = ['#ff4d6d','#ff8080','#ffc0cb'][Math.floor(Math.random()*3)];
-        heart.style.animationDuration = `${Math.random()*5+5}s`;
-        heart.style.opacity = Math.random()*0.5+0.5;
-        heartsContainer.appendChild(heart);
-        setTimeout(()=>heart.remove(),10000);
-    }
-    setInterval(createHeart, 300);
+// ---------------- Page Fade-in ----------------
+window.addEventListener('load', () => { document.body.classList.add('loaded'); });
 
-    // Slideshow with slow zoom + fade
-    const zoomSlides = document.querySelectorAll('.slide');
-    let zoomIndex = 0;
-    function showZoomSlides() {
-        zoomSlides.forEach(slide=>slide.classList.remove('active'));
-        zoomSlides[zoomIndex].classList.add('active');
-        zoomIndex++;
-        if(zoomIndex>=zoomSlides.length) zoomIndex=0;
-        setTimeout(showZoomSlides, 6000);
-    }
-    showZoomSlides();
+// ---------------- Floating Hearts ----------------
+const heartsContainer = document.querySelector('.hearts-container');
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    const size = Math.random()*25+10;
+    heart.style.width = `${size}px`;
+    heart.style.height = `${size}px`;
+    heart.style.left = `${Math.random()*100}%`;
+    heart.style.background = ['#ff4d6d','#ff8080','#ffc0cb'][Math.floor(Math.random()*3)];
+    heart.style.animationDuration = `${Math.random()*5+5}s`;
+    heart.style.opacity = Math.random()*0.5+0.5;
+    heartsContainer.appendChild(heart);
+    setTimeout(()=>heart.remove(),10000);
+}
+setInterval(createHeart, 300);
 
-    // Fade-in sections on scroll
-    const allSections = document.querySelectorAll('section');
-    function checkVisible() {
-        const triggerBottom = window.innerHeight * 0.85;
-        allSections.forEach(section=>{
-            const top = section.getBoundingClientRect().top;
-            if(top < triggerBottom) section.classList.add('visible');
-        });
+// ---------------- Slideshow Zoom + Fade ----------------
+const zoomSlides = document.querySelectorAll('.slide');
+let zoomIndex = 0;
+function showZoomSlides() {
+    zoomSlides.forEach(slide=>slide.classList.remove('active'));
+    zoomSlides[zoomIndex].classList.add('active');
+    zoomIndex++;
+    if(zoomIndex>=zoomSlides.length) zoomIndex=0;
+    setTimeout(showZoomSlides, 6000);
+}
+showZoomSlides();
+
+// ---------------- Fade-in Sections ----------------
+const allSections = document.querySelectorAll('section');
+function checkVisible() {
+    const triggerBottom = window.innerHeight * 0.85;
+    allSections.forEach(section=>{
+        const top = section.getBoundingClientRect().top;
+        if(top < triggerBottom) section.classList.add('visible');
+    });
+}
+window.addEventListener('scroll', checkVisible);
+window.addEventListener('load', checkVisible);
+
+// ---------------- Floating Love Words ----------------
+const loveWords = ["Love","Forever","You + Me","Always","Soulmate","Hugs","Kisses","❤️"];
+function spawnLoveWord() {
+    const word = document.createElement('div');
+    word.className = 'love-word';
+    word.textContent = loveWords[Math.floor(Math.random()*loveWords.length)];
+    word.style.left = `${Math.random()*80+10}%`;
+    word.style.top = `100vh`;
+    document.body.appendChild(word);
+    setTimeout(()=>word.remove(),10000);
+}
+setInterval(spawnLoveWord, 3000);
+
+// ---------------- Sparkles ----------------
+function createSparkle() {
+    const sparkle = document.createElement('div');
+    sparkle.className='sparkle';
+    sparkle.style.left = `${Math.random()*100}%`;
+    sparkle.style.top = `${Math.random()*100}%`;
+    document.body.appendChild(sparkle);
+    setTimeout(()=>sparkle.remove(),2000);
+}
+setInterval(createSparkle,500);
+
+// ---------------- Confetti on Message ----------------
+function confettiBurst() {
+    for(let i=0;i<30;i++){
+        const c = document.createElement('div');
+        c.className='confetti-piece';
+        c.style.left = `${Math.random()*80+10}%`;
+        c.style.background = ['#ff4d6d','#ff8080','#ffc0cb'][Math.floor(Math.random()*3)];
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),2000);
     }
-    window.addEventListener('scroll', checkVisible);
-    window.addEventListener('load', checkVisible);
+}
+const messageSection = document.querySelector('.heartfelt-message');
+window.addEventListener('scroll', ()=>{
+    const rect = messageSection.getBoundingClientRect();
+    if(rect.top < window.innerHeight*0.85 && !messageSection.classList.contains('confettiDone')){
+        confettiBurst();
+        messageSection.classList.add('confettiDone');
+    }
+});
+
+// ---------------- Click Heart Pop ----------------
+document.body.addEventListener('click', e=>{
+    const heart = document.createElement('div');
+    heart.className='heart';
+    heart.style.width='15px';
+    heart.style.height='15px';
+    heart.style.left = `${e.clientX}px`;
+    heart.style.top = `${e.clientY}px`;
+    heart.style.background = ['#ff4d6d','#ff8080','#ffc0cb'][Math.floor(Math.random()*3)];
+    heartsContainer.appendChild(heart);
+    setTimeout(()=>heart.remove(),3000);
+});
+
+// ---------------- Scroll Indicator Click ----------------
+document.querySelector('.scroll-indicator').addEventListener('click', ()=>{ window.scrollBy({top:window.innerHeight,behavior:'smooth'}); });
+
 </script>
-
 </body>
 </html>
