@@ -14,7 +14,7 @@ body{
   overflow-x:hidden;
 }
 
-/* Names at top - Typewriter + Glow */
+/* Names at top - Fade-in + Floating Glow */
 .love-names{
   position:fixed;
   top:20px;
@@ -23,17 +23,21 @@ body{
   font-family: 'Dancing Script', cursive;
   font-size:2.5em;
   color:#ff4d6d;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: .15em solid #ff8080; /* cursor */
-  animation:typing 3s steps(15) forwards, blink 0.75s step-end infinite, floatGlow 4s 3s infinite alternate;
+  opacity:0;
+  animation:fadeInFloat 3s forwards, floatGlow 4s 3s infinite alternate;
   z-index:1;
   text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff8080;
 }
 
-@keyframes typing { from { width:0; } to { width:15ch; } }
-@keyframes blink { 50% { border-color: transparent; } }
-@keyframes floatGlow { 0% { transform: translateY(0px) scale(1); } 100% { transform: translateY(-10px) scale(1.02); } }
+@keyframes fadeInFloat {
+  0% { opacity:0; transform: translateY(-20px) scale(0.9); }
+  100% { opacity:1; transform: translateY(0) scale(1); }
+}
+
+@keyframes floatGlow {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(-10px) scale(1.02); }
+}
 
 /* Starfield behind everything */
 #starfield{
@@ -195,7 +199,7 @@ for(let i=0;i<100;i++){
   starfield.appendChild(star);
 }
 
-// ---------------- Floating Hearts in margins ----------------
+// ---------------- Floating Hearts ----------------
 const heartsContainer = document.querySelector('.hearts-container');
 function createHeart(){
     const heart = document.createElement('div'); heart.classList.add('heart');
