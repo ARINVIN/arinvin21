@@ -1,173 +1,240 @@
-<!DOCTYPE html>
+"<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Valentine's Day, Saknaah ❤️</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  
-  <!-- Google Analytics (replace G-XXXXXXXXXX with your Measurement ID) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: #111;
-      color: #fff;
-      overflow-x: hidden;
-    }
-    /* Names at top */
-    .love-names {
-      position: fixed;
-      top: 20px;
-      width: 100%;
-      text-align: center;
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.5em;
-      color: #ff4d6d;
-      opacity: 0;
-      animation: fadeInFloat 3s forwards, floatGlow 4s 3s infinite alternate;
-      z-index: 10; /* Higher z-index */
-      text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff8080;
-    }
-    @keyframes fadeInFloat { 0% { opacity:0; transform: translateY(-20px) scale(0.9); } 100% { opacity:1; transform: translateY(0) scale(1); } }
-    @keyframes floatGlow { 0% { transform: translateY(0px) scale(1); } 100% { transform: translateY(-10px) scale(1.02); } }
-
-    /* Background effects – ensure full coverage */
-    #starfield, .hearts-container, #shootingStars, .petals-container {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
-    }
-    .star { position: absolute; background: #fff; border-radius: 50%; opacity: 0.8; animation: twinkle linear infinite; }
-    @keyframes twinkle { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
-    .heart { position: absolute; width: 25px; height: 25px; background: #ff4d6d; transform: rotate(45deg); border-radius: 3px; opacity: 0.9; }
-    .heart:before, .heart:after { content: ""; position: absolute; width: 25px; height: 25px; background: #ff4d6d; border-radius: 50%; }
-    .heart:before { top: -12.5px; left: 0; }
-    .heart:after { top: 0; left: 12.5px; }
-    .shooting-star { position: absolute; width: 2px; height: 2px; background: #fff; box-shadow: 0 0 6px #fff; transform: rotate(-45deg); animation: shoot linear forwards; }
-    @keyframes shoot { 0% { transform: translate(0,0) rotate(-45deg); opacity:1; } 100% { transform: translate(1200px, 800px) rotate(-45deg); opacity:0; } }
-    .petal { position: absolute; width: 15px; height: 15px; background: radial-gradient(circle, #ff4d6d 0%, #ff99aa 100%); border-radius: 50%; opacity: 0.8; animation: fall linear infinite; }
-    @keyframes fall { 0% { transform: translateY(-50px) rotate(0deg); opacity:0.8; } 50% { opacity:1; } 100% { transform: translateY(100vh) rotate(360deg); opacity:0; } }
-
-    /* Content sections – higher z-index */
-    .video-section, .slideshow-section, .heartfelt-message { position: relative; z-index: 5; padding: 60px 20px; text-align: center; }
-    .love-video, .slideshow-container { width: 90%; max-width: 900px; border-radius: 20px; box-shadow: 0 20px 40px rgba(255,77,109,0.3); margin: 20px auto; }
-    .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 3s ease; }
-    .slide.active { opacity: 1; }
-    .slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
-    .heartfelt-message { background: rgba(17,17,17,0.7); border-radius: 15px; margin: 20px; padding: 40px; line-height: 1.8; font-size: 1.25em; }
-    .heartfelt-message h3 { font-family: 'Dancing Script', cursive; font-size: 2.5em; color: #ff4d6d; margin-top: 40px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Valentine's Day, Saknaah ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{
+  margin:0;
+  font-family:'Roboto',sans-serif;
+  background:#111;
+  color:#fff;
+  overflow-x:hidden;
+}
+/* Names at top - Fade-in + Floating Glow */
+.love-names{
+  position:fixed;
+  top:20px;
+  width:100%;
+  text-align:center;
+  font-family: 'Dancing Script', cursive;
+  font-size:2.5em;
+  color:#ff4d6d;
+  opacity:0;
+  animation:fadeInFloat 3s forwards, floatGlow 4s 3s infinite alternate;
+  z-index:1;
+  text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff8080;
+}
+@keyframes fadeInFloat {
+  0% { opacity:0; transform: translateY(-20px) scale(0.9); }
+  100% { opacity:1; transform: translateY(0) scale(1); }
+}
+@keyframes floatGlow {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(-10px) scale(1.02); }
+}
+/* Starfield behind everything */
+#starfield{
+  position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden;
+}
+.star{
+  position:absolute; width:2px; height:2px; background:#fff; border-radius:50%; opacity:0.8; animation:twinkle linear infinite;
+}
+@keyframes twinkle{0%,100%{opacity:0.5;}50%{opacity:1;}}
+/* Floating Hearts behind content */
+.hearts-container{
+  position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden;
+}
+.heart{
+  position:absolute;
+  width:25px;
+  height:25px;
+  background:#ff4d6d;
+  transform:rotate(45deg);
+  border-radius:3px;
+  opacity:0.9;
+  transform-origin:center;
+}
+.heart:before,
+.heart:after{
+  content:"";
+  position:absolute;
+  width:25px;
+  height:25px;
+  background:#ff4d6d;
+  border-radius:50%;
+  transform-origin:center;
+}
+.heart:before{top:-12.5px; left:0;}
+.heart:after{top:0; left:12.5px;}
+/* Shooting Stars */
+#shootingStars{
+  position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden;
+}
+.shooting-star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background: #fff;
+  border-radius:50%;
+  box-shadow: 0 0 6px #fff;
+  transform:rotate(-45deg);
+  animation:shoot linear forwards;
+}
+@keyframes shoot{
+  0% { transform: translate(0,0) rotate(-45deg); opacity:1; }
+  100% { transform: translate(1200px, 800px) rotate(-45deg); opacity:0; }
+}
+/* Petals behind message */
+.petals-container{
+  position:absolute;
+  top:0; left:0; width:100%; height:100%;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+.petal{
+  position:absolute;
+  width:15px;
+  height:15px;
+  background: radial-gradient(circle, #ff4d6d 0%, #ff99aa 100%);
+  border-radius:50%;
+  opacity:0.8;
+  transform:rotate(0deg);
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  0% { transform: translateY(-50px) rotate(0deg); opacity:0.8; }
+  50%{ opacity:1; }
+  100% { transform: translateY(600px) rotate(360deg); opacity:0; }
+}
+/* Main content z-index */
+.video-section, .slideshow-section, .heartfelt-message { position: relative; z-index:1; }
+/* Video Section */
+.video-section{text-align:center; padding:60px 20px;}
+.video-section h2{font-family:'Dancing Script',cursive;font-size:3em;}
+.video-section p{font-size:1.2em;margin-bottom:30px;}
+.love-video{width:90%; max-width:900px; border-radius:20px; box-shadow:0 20px 40px rgba(255,77,109,0.3);}
+/* Slideshow Section */
+.slideshow-section{text-align:center; padding:60px 20px;}
+.slideshow-section h2{font-family:'Dancing Script',cursive;font-size:2.8em; margin-bottom:30px;}
+.slideshow-container{position:relative; max-width:900px; margin:auto; height:500px; overflow:hidden; border-radius:20px; box-shadow:0 15px 35px rgba(255,77,109,0.3);}
+.slide{position:absolute; width:100%; height:100%; top:0; left:0; opacity:0; transform:scale(1); transition:opacity 3s ease, transform 6s ease;}
+.slide img{width:100%; height:100%; object-fit:cover; border-radius:20px; filter:brightness(1.1);}
+.slide.active{opacity:1; transform:scale(1.05);}
+/* Heartfelt Message */
+.heartfelt-message{
+  text-align:center; padding:80px 20px; background-color:#111; border-radius:15px; box-shadow:0 0 50px rgba(255,77,109,0.4); font-size:1.25em; line-height:1.8; position:relative; overflow:hidden;
+}
+.heartfelt-message h3{margin-top:50px; font-size:2em; color:#ff4d6d; font-family:'Dancing Script',cursive;}
+</style>
 </head>
 <body>
-  <div class="love-names">VINI ❤️ SAKNAAH</div>
-  <div id="starfield"></div>
-  <div class="hearts-container"></div>
-  <div id="shootingStars"></div>
-
-  <section class="video-section">
-    <h2>Our Story in Motion 🎥</h2>
-    <p>Every moment with you feels like a movie I never want to end. From quiet talks to our laughter, every second with you is a treasure.</p>
-    <video id="loveVideo" muted autoplay loop playsinline controls class="love-video" crossorigin="anonymous">
-      <!-- Fix 1: Use local file if uploaded to repo root -->
-      <source src="./story.mp4" type="video/mp4">  <!-- Or keep external if it works: https://files.catbox.moe/lrectv.mp4 -->
-      Your browser does not support the video tag. Try downloading or viewing directly: <a href="https://files.catbox.moe/lrectv.mp4">Watch Video</a>
-    </video>
-  </section>
-
-  <section class="slideshow-section">
-    <h2>Moments With You 🌹</h2>
-    <div class="slideshow-container">
-      <!-- Fix 2: Add ./ prefix, and rename files without spaces/() for safety -->
-      <div class="slide"><img src="./moment1.jpeg" alt="Moment 1"></div>
-      <div class="slide"><img src="./moment2.jpeg" alt="Moment 2"></div>
-      <div class="slide"><img src="./moment3.jpeg" alt="Moment 3"></div>
-    </div>
-  </section>
-
-  <section class="heartfelt-message">
-    <div class="petals-container"></div>
-    <p>
-      Saknaah, these images may not be perfect—they’re just snapshots, a little blurry, a little ordinary—but they are ours. Every laugh, every silly pose, every quiet hug captured here is a memory I would never trade.<br><br>
-      You make the ordinary magical. You are my favorite “oops, I fell for you again” every single day. You make my heart race faster than my Wi-Fi on a video call, and my smile is bigger than my phone battery after a full charge—just because of you.<br><br>
-      I want to be your partner-in-crime, your personal comedian, your midnight snack companion, the reason you roll your eyes while secretly smiling. You’re not just my love—you’re my home, my happiness, and the adventure I never knew I needed.<br><br>
-      Today, tomorrow, and every day, I promise to love you deeper, make you laugh harder, and cherish you endlessly—even when I steal the blanket. My heart is yours, completely and forever, and I wouldn’t trade you for all the chocolate, stars, or shooting comets in the universe.
-    </p>
-    <h3>Happy Valentine’s Day, My Love ❤️ — Let’s Keep Falling for Each Other!</h3>
-  </section>
-
-  <script>
-    // Starfield
-    const starfield = document.getElementById('starfield');
-    for(let i = 0; i < 100; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 100}%`;
-      star.style.width = star.style.height = `${Math.random() * 2 + 1}px`;
-      star.style.animationDuration = `${Math.random() * 5 + 3}s`;
-      starfield.appendChild(star);
+<!-- Names -->
+<div class="love-names">VINI ❤️ SAKNAAH</div>
+<!-- Starfield -->
+<div id="starfield"></div>
+<!-- Floating Hearts -->
+<div class="hearts-container"></div>
+<!-- Shooting Stars -->
+<div id="shootingStars"></div>
+<!-- Video Section -->
+<section class="video-section">
+  <h2>Our Story in Motion 🎥</h2>
+  <p>Every moment with you feels like a movie I never want to end. From quiet talks to our laughter, every second with you is a treasure.</p>
+  <video id="loveVideo" muted autoplay loop playsinline controls class="love-video">
+    <source src="https://files.catbox.moe/lrectv.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</section>
+<!-- Slideshow Section -->
+<section class="slideshow-section">
+  <h2>Moments With You 🌹</h2>
+  <div class="slideshow-container">
+    <div class="slide"><img src="WhatsApp Image 2026-02-14 at 01.02.11.jpeg" alt="Moment 1"></div>
+    <div class="slide"><img src="WhatsApp Image 2026-02-14 at 01.02.12 (1).jpeg" alt="Moment 2"></div>
+    <div class="slide"><img src="WhatsApp Image 2026-02-14 at 01.02.12.jpeg" alt="Moment 3"></div>
+  </div>
+</section>
+<!-- Heartfelt Message -->
+<section class="heartfelt-message">
+  <div class="petals-container"></div>
+  <p>
+    Saknaah, these images may not be perfect—they’re just snapshots, a little blurry, a little ordinary—but they are ours. Every laugh, every silly pose, every quiet hug captured here is a memory I would never trade.
+    You make the ordinary magical. You are my favorite “oops, I fell for you again” every single day. You make my heart race faster than my Wi-Fi on a video call, and my smile is bigger than my phone battery after a full charge—just because of you.
+    I want to be your partner-in-crime, your personal comedian, your midnight snack companion, the reason you roll your eyes while secretly smiling. You’re not just my love—you’re my home, my happiness, and the adventure I never knew I needed.
+    Today, tomorrow, and every day, I promise to love you deeper, make you laugh harder, and cherish you endlessly—even when I steal the blanket. My heart is yours, completely and forever, and I wouldn’t trade you for all the chocolate, stars, or shooting comets in the universe.
+  </p>
+  <h3>Happy Valentine’s Day, My Love ❤️ — Let’s Keep Falling for Each Other!</h3>
+</section>
+<script>
+// ---------------- Starfield ----------------
+const starfield = document.getElementById('starfield');
+for(let i=0;i<100;i++){
+  const star=document.createElement('div'); star.className='star';
+  star.style.left=`${Math.random()*100}%`; star.style.top=`${Math.random()*100}%`;
+  star.style.width=star.style.height=`${Math.random()*2+1}px`;
+  star.style.animationDuration=`${Math.random()*5+3}s`;
+  starfield.appendChild(star);
+}
+// ---------------- Floating Hearts ----------------
+const heartsContainer = document.querySelector('.hearts-container');
+function createHeart(){
+    const heart = document.createElement('div'); heart.classList.add('heart');
+    const size = Math.random()*20+20;
+    heart.style.width = heart.style.height = `${size}px`;
+    const horizontalMargin = Math.random() < 0.5 ? Math.random()*10 : 90 + Math.random()*10;
+    heart.style.left = `${horizontalMargin}%`;
+    heart.style.bottom = '-30px';
+    heart.style.background = ['#ff4d6d','#ff8080','#ffc0cb'][Math.floor(Math.random()*3)];
+    const floatDuration = Math.random()*10+8;
+    const swayAmplitude = Math.random()*25+15;
+    const rotationSpeed = (Math.random()*2-1)*180;
+    let start = null;
+    function animateHeart(timestamp){
+        if(!start) start = timestamp;
+        const progress = (timestamp-start)/1000;
+        const percent = progress/floatDuration;
+        if(percent<1){
+            const sway = Math.sin(percent*Math.PI*2)*swayAmplitude;
+            const bottom = -30 + (window.innerHeight+60)*percent;
+            heart.style.transform = `translate(${sway}px, -${bottom}px) rotate(${rotationSpeed*percent}deg)`;
+            requestAnimationFrame(animateHeart);
+        } else heart.remove();
     }
-
-    // Floating Hearts (simplified for reliability)
-    const heartsContainer = document.querySelector('.hearts-container');
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      const size = Math.random() * 20 + 20;
-      heart.style.width = heart.style.height = `${size}px`;
-      heart.style.left = `${Math.random() * 100}%`;
-      heart.style.bottom = '-50px';
-      heartsContainer.appendChild(heart);
-      setTimeout(() => heart.remove(), 15000);
-    }
-    setInterval(createHeart, 500);
-
-    // Slideshow
-    const slides = document.querySelectorAll('.slide');
-    let slideIndex = 0;
-    function showSlides() {
-      slides.forEach(s => s.classList.remove('active'));
-      slides[slideIndex].classList.add('active');
-      slideIndex = (slideIndex + 1) % slides.length;
-      setTimeout(showSlides, 6000);
-    }
-    if (slides.length > 0) showSlides();
-
-    // Shooting Stars
-    const shootingStars = document.getElementById('shootingStars');
-    function createShootingStar() {
-      const star = document.createElement('div');
-      star.classList.add('shooting-star');
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 50}%`;
-      star.style.animationDuration = `${Math.random() * 1 + 0.8}s`;
-      shootingStars.appendChild(star);
-      setTimeout(() => star.remove(), 2000);
-    }
-    setInterval(createShootingStar, 3000);
-
-    // Petals
-    const petalsContainer = document.querySelector('.petals-container');
-    function createPetal() {
-      const petal = document.createElement('div');
-      petal.classList.add('petal');
-      petal.style.left = `${Math.random() * 100}%`;
-      petal.style.animationDuration = `${Math.random() * 6 + 5}s`;
-      petalsContainer.appendChild(petal);
-      setTimeout(() => petal.remove(), 10000);
-    }
-    setInterval(createPetal, 400);
-  </script>
+    heartsContainer.appendChild(heart);
+    requestAnimationFrame(animateHeart);
+}
+setInterval(createHeart, 400);
+// ---------------- Slideshow ----------------
+const slides=document.querySelectorAll('.slide'); let slideIndex=0;
+function showSlides(){ slides.forEach(s=>s.classList.remove('active')); slides[slideIndex].classList.add('active'); slideIndex++; if(slideIndex>=slides.length) slideIndex=0; setTimeout(showSlides,6000);}
+showSlides();
+// ---------------- Shooting Stars ----------------
+const shootingStarsContainer = document.getElementById('shootingStars');
+function createShootingStar(){
+  const star = document.createElement('div');
+  star.classList.add('shooting-star');
+  star.style.left = Math.random()*80 + 'vw';
+  star.style.top = Math.random()*60 + 'vh';
+  star.style.animationDuration = (Math.random()*1 + 0.8) + 's';
+  shootingStarsContainer.appendChild(star);
+  setTimeout(()=>star.remove(),1500);
+}
+setInterval(createShootingStar, 2000);
+// ---------------- Floating Petals ----------------
+const petalsContainer = document.querySelector('.petals-container');
+function createPetal(){
+  const petal = document.createElement('div'); petal.classList.add('petal');
+  petal.style.left = Math.random()*100+'%';
+  petal.style.width = petal.style.height = `${Math.random()*15+10}px`;
+  petal.style.animationDuration = `${Math.random()*6+5}s`;
+  petalsContainer.appendChild(petal);
+  setTimeout(()=>petal.remove(),7000);
+}
+setInterval(createPetal, 300);
+</script>
 </body>
-</html>
+</html>" fix it
